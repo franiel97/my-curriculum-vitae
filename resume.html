@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo - Daniel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            padding: 5px 10px;
+            background-color: #8fd1ed;
+            color: #1a1d33fd;
+            transition: all 0.4s ease;
+        }
+        .container-top {
+            max-width: 100%;
+            margin: 0 auto 10px;
+            background: #cceaf7;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        .container-bottom {
+            display: flex;
+            max-width: 100%;
+            width: 100%;
+            margin: 0 auto 10px;
+            gap: 15px;
+           
+        }
+        .container-left {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            
+        }
+        .category-container {
+            background: #cceaf7;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+        }
+        .container-right {
+            width: 70%;
+            background: #cceaf7;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+        }
+        .dark-mode {
+            background-color: #001;
+            color: #e2e8f0;
+        }
+        .dark-mode .container-top,
+        .dark-mode .category-container,
+        .dark-mode .container-right {
+            background: #2d3748;
+        }
+        .dark-mode .section h2 {
+            background: linear-gradient(90deg, #63b3ed, #90cdf4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .dark-mode .header p {
+            color: #7bd3f7;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            background: linear-gradient(90deg, #03315c, #000000);
+            -webkit-background-clip: text;
+
+        }
+        .header p {
+            margin: 5px 0;
+            color: #0c2042;
+            font-size: 1em;
+        }
+        .toggle-container {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        .toggle-button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            background: linear-gradient(90deg, #0c0fb8, #080149fb);
+            color: #ece498;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: transform 0.2s;
+            margin: 20px;
+        }
+        .dark-mode .toggle-button {
+            background: linear-gradient(180deg, #08a1dd, #0081fafb);
+        }
+        .toggle-button:hover {
+            transform: scale(1.05);
+        }
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .dark-mode .header h1{
+            color: #ed9121 !important;
+        }
+        .dark-mode #college-name{
+            color: #ed9121;
+        }
+        .section h2 {
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #03315c, #000000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border-bottom: 2px solid #7bd3f7;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            cursor: default;
+            margin: inherit;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+        }
+        .section h2 i {
+            margin-right: 8px;
+            color: #03315c;
+        }
+        .dark-mode .section h2 i {
+            color: #63b3ed;
+        }
+        .section .toggle-icon {
+            display: none;
+            font-size: 1em;
+            color: #3182ce;
+        }
+        .dark-mode .section .toggle-icon {
+            color: #7bd4f757;
+        }
+        .section-content {
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+        }
+        .section.collapsed .section-content {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .section.collapsed .toggle-icon::before {
+            content: '\f067'; /* Font Awesome plus icon */
+        }
+        .section:not(.collapsed) .toggle-icon::before {
+            content: '\f068'; /* Font Awesome minus icon */
+        }
+        .section p, .section ul {
+            
+            line-height: 1.2;
+        }
+        .section ul {
+            padding-left: 5px;
+        }
+        .skill-bar, .lang-bar {
+            background: #7bd4f7;
+            border-radius: 6px;
+            height: 12px;
+            margin: 8px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .skill-bar div, .lang-bar div {
+            height: 100%;
+            background: linear-gradient(90deg, #03315c, #3eafff);
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+        .skill-bar span, .lang-bar span {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #001435;
+        }
+        .dark-mode .skill-bar, .dark-mode .lang-bar {
+            background: #4a5568;
+        }
+        .dark-mode .skill-bar span, .dark-mode .lang-bar span {
+            color: #e2e8f0;
+        }
+        .contact-links a {
+            color: #0d0396;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .contact-links a:hover {
+            color: #520702;
+            text-decoration: underline;
+        }
+        .contact-links li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .contact-links i {
+            margin-right: 10px;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        .contact-links li:nth-child(1) i {
+            color: #25D366; /* WhatsApp color */
+        }
+        .contact-links li:nth-child(2) i {
+            color: #ed9121; /* Email color */
+        }
+        .contact-links li:nth-child(3) i {
+            color: #0072b1; /* LinkedIn color */
+        }
+        .contact-links a:hover i {
+            color: #63b3ed;
+        }
+        .dark-mode .contact-links i {
+            color: #25D366; /* WhatsApp color */
+        }
+        .dark-mode .contact-links li:nth-child(2) i {
+            color: #ed9121; /* Email color */
+        }
+        .dark-mode .contact-links li:nth-child(3) i {
+            color: #0072b1; /* LinkedIn color */
+        }
+        .dark-mode .contact-links a:hover i {
+            color: #90cdf4;
+        }
+        .dark-mode .experience .company{
+            color: #ed9121;
+        }
+
+        .proficiency {
+            font-weight: 300;
+            color: #718096;
+        }
+        .dark-mode .proficiency {
+            color: #a0aec0;
+        }
+        .experience .company {
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            color: #011400;
+        }
+        .experience .job-title {
+            font-size: 12px;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        .dark-mode .experience .job-title {
+            color: #7bd3f7;
+        }
+        .experience .job-description {
+            font-size: 11px;
+            padding-left: 30px;
+        }
+        .experience .job-description li {
+            position: relative;
+        }
+        .experience p.company:not(:first-child) {
+            border-top: 1px solid #7bd3f7;
+            padding-top: 10px;
+        }
+        .dark-mode .experience .job-description li:before {
+            color: #63b3ed;
+        }
+        .floating-contacts {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .floating-contacts ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .floating-contacts li {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+        .floating-contacts li:hover {
+            transform: scale(1.1);
+        }
+        .floating-contacts i {
+            color: #fff;
+            font-size: 1.2em;
+        }
+        .dark-mode .floating-contacts li {
+            background: #63b3ed;
+        }
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px 20px 10px 10px;
+            }
+            .container-top, .category-container, .container-right {
+                padding: 5px 5px;
+                width: 100%;
+            }
+            .container-bottom {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .container-left {
+                width: 100%;
+            }
+            .contact-section {
+                display: none;
+            }
+            .floating-contacts {
+                display: block;
+            }
+            .floating-contacts.hidden {
+                display: none;
+            }
+            .header h1 {
+                font-size: 1.6em;
+            }
+            .header p {
+                font-size: 0.9em;
+            }
+            .section h2 {
+                font-size: 1.0em;
+                cursor: pointer;
+            }
+            .section .toggle-icon {
+                display: inline-block;
+            }
+            .section-content {
+                max-height: 1000px;
+            }
+            .section.collapsed .section-content {
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+            }
+            .section {
+                max-height: 40px !important;
+                overflow: hidden !important;
+            }
+            .section:not(.collapsed) {
+                max-height: none !important;
+            }
+            .section p, .section ul {
+                font-size: 0.9em;
+            }
+            .toggle-button {
+                padding: 8px 12px;
+                font-size: 0.85em;
+            }
+            .contact-links i {
+                font-size: 1em;
+            }
+            .skill-bar, .lang-bar {
+                height: 10px;
+            }
+            .skill-bar span, .lang-bar span {
+                font-size: 0.7em;
+            }
+            .experience .company {
+                font-size: 12px;
+            }
+            .experience .job-title {
+                font-size: 11px;
+            }
+            .experience .job-description {
+                font-size: 11px;
+            }
+        }
+        @media (max-width: 400px) {
+            body {
+                padding: 10px 20px 10px 10px;
+            }
+            .container-top, .category-container, .container-right {
+                padding: 5px;
+            }
+            .header h1 {
+                font-size: 1.2em;
+            }
+            .section h2 {
+                font-size: 1.0em;
+            }
+            .section p, .section ul {
+                font-size: 0.85em;
+            }
+            .contact-links li {
+                font-size: 0.85em;
+            }
+            .floating-contacts li {
+                width: 35px;
+                height: 35px;
+            }
+            .floating-contacts i {
+                font-size: 1em;
+            }
+        }
+        @media (min-width: 601px) {
+            .container-top, .container-bottom {
+                max-width: 1200px;
+            }
+            .container-top, .category-container, .container-right {
+                padding: 15px;
+            }
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .section h2 {
+                font-size: 1.2em;
+                cursor: default;
+            }
+            .section .toggle-icon {
+                display: none;
+            }
+            .section-content {
+                max-height: none !important;
+                opacity: 1 !important;
+            }
+            .section.collapsed .section-content {
+                max-height: none !important;
+                opacity: 1 !important;
+            }
+            .section {
+                max-height: none !important;
+            }
+            .section p, .section ul {
+                font-size: 0.8em;
+            }
+            .experience .company {
+                font-size: 14px;
+            }
+            .experience .job-title {
+                font-size: 12;
+            }
+            .experience .job-description {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-top">
+        <div class="toggle-container" style="position: absolute; top: 20px; right: 20px;">
+            <button class="toggle-button" id="theme-toggle" title="Alternar Modo Escuro">
+                <i class="fas fa-moon theme-toggle-icon"></i>
+            </button>
+        </div>
+        <div class="header">
+            <h1>Francisco Daniel Reis A. Ferreira</h1>
+            <p>Analista de Testes/QA</p>
+            <p>Ribeirão Preto, São Paulo, Brasil</p>
+        </div>
+
+        <div class="section" id="resumo">
+            <h2><div class="section-title"><i class="fa-solid fa-user"></i><span>Resumo</span></div></h2>
+            <p>Sou analista de Qualidade de Software, com forte foco em testes manuais e conhecimentos em testes automatizados para aplicações Web. Com mais de cinco anos de experiência em suporte técnico e infraestrutura de redes, domino JavaScript, .NET, HTML, protocolos TCP/IP e manutenção de sistemas em Linux, Windows e Android. Atuo com análise de logs, resolução de incidentes e integração em pipelines CI/CD, seguindo metodologias ágeis e práticas DevOps.</p>
+
+            <p>Graduado em Ciência da Computação pela UNIP, dedico-me a garantir a qualidade e confiabilidade de software, colaborando para entregas contínuas e robustas.</p>
+        </div>
+    </div>
+    
+    <div class="container-bottom">
+        <div class="container-left" id="informacoes">
+            <div class="category-container contact-section">
+                <div class="section collapsed">
+                    <h2><div class="section-title"><i class="fa-solid fa-phone"></i><span>Contatos</span></div><span class="toggle-icon fa-solid fa-plus"></span></h2>
+                    <div class="section-content">
+                        <ul class="contact-links">
+                            <li ><i class="fas fa-phone"></i><a href="https://wa.me/5511992091856" target="_blank" rel="noopener noreferrer">(11) 99209-1856</a></li>
+                            <li><i class="fas fa-envelope"></i><a href="mailto:daniell.alves.1@gmail.com" target="_blank" rel="noopener noreferrer">daniell.alves.1@gmail.com</a></li>
+                            <li><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/fdaf" target="_blank" rel="noopener noreferrer">linkedin.com/in/fdaf</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="category-container">
+                <div class="section collapsed">
+                    <h2><div class="section-title"><i class="fa-solid fa-graduation-cap"></i><span>Formação Acadêmica</span></div><span class="toggle-icon fa-solid fa-plus"></span></h2>
+                    <div class="section-content">
+                        <p id="college-name">
+                            <strong>Universidade Paulista (UNIP)</strong><br>
+                        </p>
+                        <p>Graduação em Ciência da Computação (2016 à 2019)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="category-container">
+                <div class="section collapsed" id="competencias">
+                    <h2><div class="section-title"><i class="fa-solid fa-star"></i><span>Principais Competências</span></div><span class="toggle-icon fa-solid fa-plus"></span></h2>
+                    <div class="section-content">
+                        <ul>
+                            <li>Garantia de Qualidade</li>
+                            <li>Postman</li>
+                            <li>Testes Manuais</li>
+                            <li>Testes Automatizados</li>
+                            <li>Análise de Logs</li>
+                            <li>Metodologias Ágeis</li>
+                            <li>Suporte Técnico</li>
+                            <li>Atendimento ao Cliente</li>
+                            <li>Excel</li>
+                            <li>Diagnósticos de Hardware</li>
+                            <li>Aprendizado Rápido</li>
+                            <li>Boa Comunicação</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="category-container">
+                <div class="section collapsed" id="idiomas">
+                    <h2><div class="section-title"><i class="fa-solid fa-globe"></i><span>Idiomas</span></div><span class="toggle-icon fa-solid fa-plus"></span></h2>
+                    <div class="section-content">
+                        <ul>
+                            <li>Português <span class="proficiency">(Nativo)</span><div class="lang-bar"><div style="width: 100%"></div><span>100%</span></div></li>
+                            <li>Inglês <span class="proficiency">(Básico/Técnico)</span><div class="lang-bar"><div style="width: 35%"></div><span>35%</span></div></li>
+                            <li>Espanhol <span class="proficiency">(Intermediário)</span><div class="lang-bar"><div style="width: 45%"></div><span>45%</span></div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-right">
+                <div class="section collapsed experience">
+                    <h2><div class="section-title"><i class="fa-solid fa-briefcase"></i><span>Experiência Profissional</span></div><span class="toggle-icon fa-solid fa-plus"></span></h2>
+                    <div class="section-content">
+                        <p class="company">XGEN (SÃO PAULO, BRASIL)</p>
+                        <p class="job-title">Analista de Testes/QA Júnior - Abril/2022 até o momento (3 anos +)</p>
+                        <ul class="job-description">
+                            <li>Condução de testes manuais, exploratórios e automatizados, integrando pipelines CI/CD.</li>
+                            <li>Criação e manutenção de cenários de teste, com foco em qualidade, confiabilidade, segurança e em metodologias ágeis.</li>
+                            <li>Análise de logs e colaboração com desenvolvedores e Product Owners para mitigação de riscos.</li>
+                        </ul>
+                        <p class="job-title">Analista de suporte sênior I - Dezembro/2021 à Junho/2022 (7 meses)</p>
+                        <ul class="job-description">
+                            <li>Atendimento de 2º nível, resolvendo incidentes complexos em aplicações Web.</li>
+                            <li>Gestão de incidentes críticos, coordenando equipes de Desenvolvimento e Infraestrutura, com foco em DevOps e eficiência operacional</li>
+                        </ul>
+                        <p class="job-title">Analista de suporte pleno II - Março/2020 à Dezembro/2021 (1 ano e 10 meses)</p>
+                        <ul class="job-description">
+                            <li>Otimização de bots de atendimento e gestão de incidentes com relatórios executivos.</li>
+                            <li>Planejamento de treinamentos para capacitação em ferramentas e processos de suporte.</li>
+                        </ul>
+                        <p class="job-title">Analista de suporte júnior - Maio/2019 à Fevereiro/2020 (10 meses)</p>
+                        <ul class="job-description">
+                            <li>Suporte a aplicações Web (JavaScript, .NET, HTML) com triagem de chamados.</li>
+                            <li>Análise de logs e criação de cenários de teste para diagnóstico de falhas.</li>
+                        </ul>
+                        <p class="job-title">Estagiário de suporte - Julho/2018 à Maio/2019 (11 meses)</p>
+                        <ul class="job-description">
+                            <li>Suporte inicial a aplicações Web através de ferramentas de atendimento (voz, chat, e-mail).</li>
+                        </ul>
+                        <p class="company">WEB AIR INTERNET EIRELI (DIADEMA, SP)</p>
+                        <p class="job-title">Suporte de informática, redes e telefonia - Junho/2017 à Julho/2018 (1 ano e 2 meses)</p>
+                        <ul class="job-description">
+                            <li>Suporte técnico a clientes e colaboradores, configurando e mantendo PABX-IP, CFTV, switches, roteadores, antenas de internet, computadores e impressoras. Garantindo a continuidade operacional da infraestrutura de TI com resolução de chamados e manutenção de sistemas e hardwares (Linux, Winodws e Android).</li>
+                        </ul>
+                        <p class="company">RASSINI-NHK AUTOMOTIVE (SÃO BERNARDO DO CAMPO, SP)</p>
+                        <p class="job-title">Auxiliar Administrativo - Maio/2014 à Maio/2016 (2 anos e 1 mês)</p>
+                        <ul class="job-description">
+                            <li>Análise de planilhas no Excel e projetos de engenharia automobilística em AutoCAD</li>
+                            <li>Elaborei relatórios analíticos e apresentações executivas em PowerPoint, analisando processos fabris para otimizar a produção.</li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+        <div class="floating-contacts hidden">
+            <ul>
+                <li style="background: #25D366;"><a href="https://wa.me/5511992091856" target="_blank" rel="noopener noreferrer"><i class="fas fa-phone"></i></a></li>
+                <li style="background: #e7a33e;"><a href="mailto:daniell.alves.1@gmail.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-envelope"></i></a></li>
+                <li style="background: #0072b1;"><a href="https://www.linkedin.com/in/fdaf" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function toggleDarkMode(enable) {
+            if (enable) {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.theme-toggle-icon').classList.replace('fa-moon', 'fa-sun');
+            } else {
+                document.body.classList.remove('dark-mode');
+                document.querySelector('.theme-toggle-icon').classList.replace('fa-sun', 'fa-moon');
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+
+        if (savedTheme === 'dark') {
+            toggleDarkMode(true);
+        } else if (savedTheme === 'light') {
+            toggleDarkMode(false);
+        } else {
+            const now = new Date();
+            const hour = now.getHours();
+            if (hour >= 18 || hour < 6) {
+                toggleDarkMode(true);
+                localStorage.setItem('theme', 'dark');
+            } else {
+                toggleDarkMode(false);
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            const isDark = document.body.classList.contains('dark-mode');
+            toggleDarkMode(!isDark);
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const resumoSection = document.getElementById('competencias');
+            const floatingContacts = document.querySelector('.floating-contacts');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        floatingContacts.classList.remove('hidden');
+                    } else {
+                        floatingContacts.classList.add('hidden');
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.1
+            });
+
+            observer.observe(resumoSection);
+
+            // Add toggle functionality for mobile sections
+            const sectionHeaders = document.querySelectorAll('.section h2');
+            sectionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    if (window.innerWidth <= 600) { // Only toggle in mobile view
+                        const section = header.parentElement;
+                        section.classList.toggle('collapsed');
+                    }
+                });
+            });
+
+            // Ensure sections are expanded in desktop mode
+            function updateSectionState() {
+                const sections = document.querySelectorAll('.section');
+                if (window.innerWidth > 600) {
+                    sections.forEach(section => {
+                        section.classList.remove('collapsed');
+                    });
+                }
+            }
+
+            // Initial check
+            updateSectionState();
+
+            // Update on window resize
+            window.addEventListener('resize', updateSectionState);
+        });
+    </script>
+</body>
+</html>
