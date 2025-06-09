@@ -705,7 +705,7 @@
                 sections.forEach(section => {
                     if (window.innerWidth > 600) {
                         section.classList.remove('collapsed');
-                    } else if (section.id !== 'resumo') {
+                    } else if (section.id !== 'resumo' && 'idiomas') {
                         // In mobile view, ensure non-Resumo sections start collapsed
                         section.classList.add('collapsed');
                     }
