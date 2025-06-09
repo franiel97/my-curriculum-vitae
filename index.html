@@ -31,14 +31,12 @@
             width: 100%;
             margin: 0 auto 10px;
             gap: 15px;
-           
         }
         .container-left {
             width: 30%;
             display: flex;
             flex-direction: column;
             gap: 15px;
-            
         }
         .category-container {
             background: #cceaf7;
@@ -72,7 +70,6 @@
         .dark-mode .header p {
             color: #7bd3f7;
         }
-
         .header {
             text-align: center;
             margin-bottom: 10px;
@@ -82,7 +79,6 @@
             font-size: 2.5em;
             background: linear-gradient(90deg, #03315c, #000000);
             -webkit-background-clip: text;
-
         }
         .header p {
             margin: 5px 0;
@@ -94,9 +90,9 @@
             margin-bottom: 10px;
         }
         .toggle-button {
-            padding: 10px 15px;
+            padding: 15px 15px;
             border: none;
-            border-radius: 6px;
+            border-radius: 50%;
             background: linear-gradient(90deg, #0c0fb8, #080149fb);
             color: #ece498;
             cursor: pointer;
@@ -106,6 +102,7 @@
         }
         .dark-mode .toggle-button {
             background: linear-gradient(180deg, #08a1dd, #0081fafb);
+            padding: 15px 15px;
         }
         .toggle-button:hover {
             transform: scale(1.05);
@@ -121,10 +118,10 @@
                 transform: translateY(0);
             }
         }
-        .dark-mode .header h1{
+        .dark-mode .header h1 {
             color: #ed9121 !important;
         }
-        .dark-mode #college-name{
+        .dark-mode #college-name {
             color: #ed9121;
         }
         .section h2 {
@@ -173,8 +170,15 @@
         .section:not(.collapsed) .toggle-icon::before {
             content: '\f068'; /* Font Awesome minus icon */
         }
+        /* Ensure Resumo section is always expanded */
+        #resumo.section .section-content {
+            max-height: none !important;
+            opacity: 1 !important;
+        }
+        #resumo.section {
+            max-height: none !important;
+        }
         .section p, .section ul {
-            
             line-height: 1.2;
         }
         .section ul {
@@ -250,10 +254,9 @@
         .dark-mode .contact-links a:hover i {
             color: #90cdf4;
         }
-        .dark-mode .experience .company{
+        .dark-mode .experience .company {
             color: #ed9121;
         }
-
         .proficiency {
             font-weight: 300;
             color: #718096;
@@ -379,6 +382,20 @@
             .section:not(.collapsed) {
                 max-height: none !important;
             }
+            /* Ensure Resumo section is always expanded in mobile */
+            #resumo.section .section-content {
+                max-height: none !important;
+                opacity: 1 !important;
+            }
+            #resumo.section {
+                max-height: none !important;
+            }
+            #resumo .toggle-icon {
+                display: none !important;
+            }
+            #resumo h2 {
+                cursor: default !important;
+            }
             .section p, .section ul {
                 font-size: 0.9em;
             }
@@ -467,7 +484,7 @@
                 font-size: 14px;
             }
             .experience .job-title {
-                font-size: 12;
+                font-size: 12px;
             }
             .experience .job-description {
                 font-size: 11px;
@@ -485,14 +502,15 @@
         <div class="header">
             <h1>Francisco Daniel Reis A. Ferreira</h1>
             <p>Analista de Testes/QA</p>
-            <p>Ribeirão Preto, São Paulo, Brasil</p>
+            <p>Ribeirão Preto, São Paulo, SP - Brasil</p>
         </div>
 
         <div class="section" id="resumo">
             <h2><div class="section-title"><i class="fa-solid fa-user"></i><span>Resumo</span></div></h2>
-            <p>Sou analista de Qualidade de Software, com forte foco em testes manuais e conhecimentos em testes automatizados para aplicações Web. Com mais de cinco anos de experiência em suporte técnico e infraestrutura de redes, domino JavaScript, .NET, HTML, protocolos TCP/IP e manutenção de sistemas em Linux, Windows e Android. Atuo com análise de logs, resolução de incidentes e integração em pipelines CI/CD, seguindo metodologias ágeis e práticas DevOps.</p>
-
-            <p>Graduado em Ciência da Computação pela UNIP, dedico-me a garantir a qualidade e confiabilidade de software, colaborando para entregas contínuas e robustas.</p>
+            <div class="section-content">
+                <p>Sou analista de Qualidade de Software, com forte foco em testes manuais e conhecimentos em testes automatizados para aplicações Web. Com mais de cinco anos de experiência em suporte técnico e infraestrutura de redes, domino JavaScript, .NET, HTML, protocolos TCP/IP e manutenção de sistemas em Linux, Windows e Android. Atuo com análise de logs, resolução de incidentes e integração em pipelines CI/CD, seguindo metodologias ágeis e práticas DevOps.</p>
+                <p>Graduado em Ciência da Computação pela UNIP, dedico-me a garantir a qualidade e confiabilidade de software, colaborando para entregas contínuas e robustas.</p>
+            </div>
         </div>
     </div>
     
@@ -503,7 +521,7 @@
                     <h2><div class="section-title"><i class="fa-solid fa-phone"></i><span>Contatos</span></div><span class="toggle-icon fa-solid fa-plus"></span></h2>
                     <div class="section-content">
                         <ul class="contact-links">
-                            <li ><i class="fas fa-phone"></i><a href="https://wa.me/5511992091856" target="_blank" rel="noopener noreferrer">(11) 99209-1856</a></li>
+                            <li><i class="fas fa-phone"></i><a href="https://wa.me/5511992091856" target="_blank" rel="noopener noreferrer">(11) 99209-1856</a></li>
                             <li><i class="fas fa-envelope"></i><a href="mailto:daniell.alves.1@gmail.com" target="_blank" rel="noopener noreferrer">daniell.alves.1@gmail.com</a></li>
                             <li><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/fdaf" target="_blank" rel="noopener noreferrer">linkedin.com/in/fdaf</a></li>
                         </ul>
@@ -557,48 +575,48 @@
         </div>
 
         <div class="container-right">
-                <div class="section collapsed experience">
-                    <h2><div class="section-title"><i class="fa-solid fa-briefcase"></i><span>Experiência Profissional</span></div><span class="toggle-icon fa-solid fa-plus"></span></h2>
-                    <div class="section-content">
-                        <p class="company">XGEN (SÃO PAULO, BRASIL)</p>
-                        <p class="job-title">Analista de Testes/QA Júnior - Abril/2022 até o momento (3 anos +)</p>
-                        <ul class="job-description">
-                            <li>Condução de testes manuais, exploratórios e automatizados, integrando pipelines CI/CD.</li>
-                            <li>Criação e manutenção de cenários de teste, com foco em qualidade, confiabilidade, segurança e em metodologias ágeis.</li>
-                            <li>Análise de logs e colaboração com desenvolvedores e Product Owners para mitigação de riscos.</li>
-                        </ul>
-                        <p class="job-title">Analista de suporte sênior I - Dezembro/2021 à Junho/2022 (7 meses)</p>
-                        <ul class="job-description">
-                            <li>Atendimento de 2º nível, resolvendo incidentes complexos em aplicações Web.</li>
-                            <li>Gestão de incidentes críticos, coordenando equipes de Desenvolvimento e Infraestrutura, com foco em DevOps e eficiência operacional</li>
-                        </ul>
-                        <p class="job-title">Analista de suporte pleno II - Março/2020 à Dezembro/2021 (1 ano e 10 meses)</p>
-                        <ul class="job-description">
-                            <li>Otimização de bots de atendimento e gestão de incidentes com relatórios executivos.</li>
-                            <li>Planejamento de treinamentos para capacitação em ferramentas e processos de suporte.</li>
-                        </ul>
-                        <p class="job-title">Analista de suporte júnior - Maio/2019 à Fevereiro/2020 (10 meses)</p>
-                        <ul class="job-description">
-                            <li>Suporte a aplicações Web (JavaScript, .NET, HTML) com triagem de chamados.</li>
-                            <li>Análise de logs e criação de cenários de teste para diagnóstico de falhas.</li>
-                        </ul>
-                        <p class="job-title">Estagiário de suporte - Julho/2018 à Maio/2019 (11 meses)</p>
-                        <ul class="job-description">
-                            <li>Suporte inicial a aplicações Web através de ferramentas de atendimento (voz, chat, e-mail).</li>
-                        </ul>
-                        <p class="company">WEB AIR INTERNET EIRELI (DIADEMA, SP)</p>
-                        <p class="job-title">Suporte de informática, redes e telefonia - Junho/2017 à Julho/2018 (1 ano e 2 meses)</p>
-                        <ul class="job-description">
-                            <li>Suporte técnico a clientes e colaboradores, configurando e mantendo PABX-IP, CFTV, switches, roteadores, antenas de internet, computadores e impressoras. Garantindo a continuidade operacional da infraestrutura de TI com resolução de chamados e manutenção de sistemas e hardwares (Linux, Winodws e Android).</li>
-                        </ul>
-                        <p class="company">RASSINI-NHK AUTOMOTIVE (SÃO BERNARDO DO CAMPO, SP)</p>
-                        <p class="job-title">Auxiliar Administrativo - Maio/2014 à Maio/2016 (2 anos e 1 mês)</p>
-                        <ul class="job-description">
-                            <li>Análise de planilhas no Excel e projetos de engenharia automobilística em AutoCAD</li>
-                            <li>Elaborei relatórios analíticos e apresentações executivas em PowerPoint, analisando processos fabris para otimizar a produção.</li>
-                        </ul>
-                    </div>
+            <div class="section collapsed experience">
+                <h2><div class="section-title"><i class="fa-solid fa-briefcase"></i><span>Experiência Profissional</span></div><span class="toggle-icon fa-solid fa-plus"></span></h2>
+                <div class="section-content">
+                    <p class="company">XGEN (SÃO PAULO, SP - BRASIL)</p>
+                    <p class="job-title">Analista de Testes/QA Júnior - Abril/2022 até o momento (3 anos +)</p>
+                    <ul class="job-description">
+                        <li>Condução de testes manuais, exploratórios e automatizados, integrando pipelines CI/CD.</li>
+                        <li>Criação e manutenção de cenários de teste, com foco em qualidade, confiabilidade, segurança e em metodologias ágeis.</li>
+                        <li>Análise de logs e colaboração com desenvolvedores e Product Owners para mitigação de riscos.</li>
+                    </ul>
+                    <p class="job-title">Analista de suporte sênior I - Dezembro/2021 à Junho/2022 (7 meses)</p>
+                    <ul class="job-description">
+                        <li>Atendimento de 2º nível, resolvendo incidentes complexos em aplicações Web.</li>
+                        <li>Gestão de incidentes críticos, coordenando equipes de Desenvolvimento e Infraestrutura, com foco em DevOps e eficiência operacional</li>
+                    </ul>
+                    <p class="job-title">Analista de suporte pleno II - Março/2020 à Dezembro/2021 (1 ano e 10 meses)</p>
+                    <ul class="job-description">
+                        <li>Otimização de bots de atendimento e gestão de incidentes com relatórios executivos.</li>
+                        <li>Planejamento de treinamentos para capacitação em ferramentas e processos de suporte.</li>
+                    </ul>
+                    <p class="job-title">Analista de suporte júnior - Maio/2019 à Fevereiro/2020 (10 meses)</p>
+                    <ul class="job-description">
+                        <li>Suporte a aplicações Web (JavaScript, .NET, HTML) com triagem de chamados.</li>
+                        <li>Análise de logs e criação de cenários de teste para diagnóstico de falhas.</li>
+                    </ul>
+                    <p class="job-title">Estagiário de suporte - Julho/2018 à Maio/2019 (11 meses)</p>
+                    <ul class="job-description">
+                        <li>Suporte inicial a aplicações Web através de ferramentas de atendimento (voz, chat, e-mail).</li>
+                    </ul>
+                    <p class="company">WEB AIR INTERNET EIRELI (DIADEMA, SP - Brasil)</p>
+                    <p class="job-title">Suporte de informática, redes e telefonia - Junho/2017 à Julho/2018 (1 ano e 2 meses)</p>
+                    <ul class="job-description">
+                        <li>Suporte técnico a clientes e colaboradores, configurando e mantendo PABX-IP, CFTV, switches, roteadores, antenas de internet, computadores e impressoras. Garantindo a continuidade operacional da infraestrutura de TI com resolução de chamados e manutenção de sistemas e hardwares (Linux, Windows e Android).</li>
+                    </ul>
+                    <p class="company">RASSINI-NHK AUTOMOTIVE (SÃO BERNARDO DO CAMPO, SP - Brasil)</p>
+                    <p class="job-title">Auxiliar Administrativo - Maio/2014 à Maio/2016 (2 anos e 1 mês)</p>
+                    <ul class="job-description">
+                        <li>Análise de planilhas no Excel e projetos de engenharia automobilística em AutoCAD</li>
+                        <li>Elaboração de relatórios analíticos e apresentações executivas em PowerPoint, analisando processos fabris para otimizar a produção.</li>
+                    </ul>
                 </div>
+            </div>
         </div>
         <div class="floating-contacts hidden">
             <ul>
@@ -662,25 +680,32 @@
 
             observer.observe(resumoSection);
 
-            // Add toggle functionality for mobile sections
+            // Add toggle functionality for mobile sections, excluding Resumo
             const sectionHeaders = document.querySelectorAll('.section h2');
             sectionHeaders.forEach(header => {
-                header.addEventListener('click', () => {
-                    if (window.innerWidth <= 600) { // Only toggle in mobile view
-                        const section = header.parentElement;
-                        section.classList.toggle('collapsed');
-                    }
-                });
-            });
-
-            // Ensure sections are expanded in desktop mode
-            function updateSectionState() {
-                const sections = document.querySelectorAll('.section');
-                if (window.innerWidth > 600) {
-                    sections.forEach(section => {
-                        section.classList.remove('collapsed');
+                const section = header.parentElement;
+                // Skip Resumo section
+                if (section.id !== 'resumo') {
+                    // Add click event listener for mobile view (≤600px)
+                    header.addEventListener('click', () => {
+                        if (window.innerWidth <= 600) {
+                            section.classList.toggle('collapsed');
+                        }
                     });
                 }
+            });
+
+            // Ensure sections are expanded in desktop mode and handle initial state
+            function updateSectionState() {
+                const sections = document.querySelectorAll('.section');
+                sections.forEach(section => {
+                    if (window.innerWidth > 600) {
+                        section.classList.remove('collapsed');
+                    } else if (section.id !== 'resumo') {
+                        // In mobile view, ensure non-Resumo sections start collapsed
+                        section.classList.add('collapsed');
+                    }
+                });
             }
 
             // Initial check
