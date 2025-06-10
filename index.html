@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+<html lang="pt-BR"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currículo - Francisco Daniel</title>
@@ -97,7 +95,8 @@
         .dark-mode .header h1 {
             margin: 0;
             font-size: 2.8em;
-            background: #6bc9ff;            -webkit-background-clip: text;
+            background: #6bc9ff;
+            -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .header h1 {
@@ -127,7 +126,7 @@
             align-items: center;
             justify-content: center;
             border: none;
-            background: linear-gradient(90deg, #0c0fb8, #080149fb) ;
+            background: linear-gradient(90deg, #0c0fb8, #080149fb);
             color: #ece498 !important;
             cursor: pointer;
             font-size: 0.95em;
@@ -397,10 +396,43 @@
         .floating-contacts li.theme-toggle-li {
             background: linear-gradient(90deg, #0c0fb8, #080149fb);
         }
+        .floating-contacts li.sections-toggle-li {
+            border-radius: 25px;
+                width: 120px;
+            padding: 0 10px 0 0;
+            background: linear-gradient(90deg, #0c0fb8, #645cadfb);
+        }
+        .floating-contacts li.sections-toggle-li .mobile-toggle {
+            display: flex;
+            align-items: center;
+            padding: 0;
+            background: none;
+            border: none;
+        }
+        .floating-contacts li.sections-toggle-li .mobile-toggle i {
+			width: 50px;
+			height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(90deg, #0c0fb8, #080149fb);
+        }
+        .floating-contacts li.sections-toggle-li .mobile-toggle span {
+            margin-left: 8px;
+            color: #ece498;
+            font-size: 0.9em;
+        }
         .dark-mode .floating-contacts li.theme-toggle-li {
             background: linear-gradient(180deg, #54c2ee, #1165b3fb);
         }
-        .dark-mode .floating-contacts li:not(.theme-toggle-li) {
+        .dark-mode .floating-contacts li.sections-toggle-li {
+            background: linear-gradient(180deg, #54c2ee, #1165b3fb);
+        }
+        .dark-mode .floating-contacts li.sections-toggle-li .mobile-toggle i {
+            background: linear-gradient(180deg, #54c2ee, #1165b3fb);
+        }
+        .dark-mode .floating-contacts li:not(.theme-toggle-li):not(.sections-toggle-li) {
             background: linear-gradient(180deg, #54c2ee, #1165b3fb);
         }
         @media (max-width: 600px) {
@@ -449,15 +481,17 @@
                 height: 40px;
                 border-radius: 50%;
             }
+            .floating-contacts li.sections-toggle-li {
+                height: 40px;
+            }
             .floating-contacts .mobile-toggle {
                 border-radius: 50%;
-
                 padding: 0;
                 background: linear-gradient(90deg, #0c0fb8, #080149fb);
                 border: none;
             }
             .dark-mode .floating-contacts .mobile-toggle {
-            background: linear-gradient(180deg, #54c2ee, #1165b3fb);
+                background: linear-gradient(180deg, #54c2ee, #1165b3fb);
             }
             .floating-contacts .mobile-toggle:hover {
                 transform: scale(1.1);
@@ -560,28 +594,33 @@
                 width: 35px;
                 height: 35px;
             }
+            .floating-contacts li.sections-toggle-li {
+                height: 35px;
+            }
             .floating-contacts i {
                 font-size: 1em;
             }
             .floating-contacts ul {
                 padding: 6px 12px;
             }
-
-        }
-        @media (max-width:1024px){
-        .toggle-container {
-            position: absolute;
-            top: 50px;
-            right: 5px;
-            z-index: 2;
-        }
-        .header h1{
-            font-size: 2.8em;
+            .floating-contacts li.sections-toggle-li .mobile-toggle span {
+                font-size: 0.8em;
             }
-        .dark-mode .header h1 {
+        }
+        @media (max-width: 1024px) {
+            .toggle-container {
+                position: absolute;
+                top: 50px;
+                right: 5px;
+                z-index: 2;
+            }
+            .header h1 {
                 font-size: 2.8em;
             }
-  
+            .dark-mode .header h1 {
+                font-size: 2.8em;
+            }
+        }
         @media (min-width: 601px) {
             .container-top, .container-bottom {
                 max-width: 1200px;
@@ -629,7 +668,7 @@
     </style>
 </head>
 <body>
-    <canvas id="background-canvas"></canvas>
+    <canvas id="background-canvas" width="820" height="1180"></canvas>
     <div class="toggle-container">
         <button class="toggle-button" id="theme-toggle" title="Alternar Modo Escuro">
             <i class="fas fa-moon theme-toggle-icon"></i>
@@ -656,7 +695,7 @@
     <div class="container-bottom">
         <div class="container-left" id="informacoes">
             <div class="category-container contact-section">
-                <div class="section collapsed">
+                <div class="section">
                     <h2><div class="section-title"><i class="fa-solid fa-phone"></i><span>Contatos</span></div><span class="toggle-icon fa-solid fa-plus"></span></h2>
                     <div class="section-content">
                         <ul class="contact-links">
@@ -664,13 +703,12 @@
                             <li><i class="fas fa-envelope"></i><a href="mailto:daniell.alves.1@gmail.com" target="_blank" rel="noopener noreferrer">daniell.alves.1@gmail.com</a></li>
                             <li><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/fdaf" target="_blank" rel="noopener noreferrer">linkedin.com/in/fdaf</a></li>
                             <li><i class="fab fa-instagram"></i><a href="https://www.instagram.com/franiel" target="_blank" rel="noopener noreferrer">instagram.com/franiel</a></li>
-
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="category-container">
-                <div class="section collapsed">
+                <div class="section">
                     <h2><div class="section-title"><i class="fa-solid fa-graduation-cap"></i><span>Formação Acadêmica</span></div><span class="toggle-icon fa-solid fa-plus"></span></h2>
                     <div class="section-content">
                         <p id="college-name">
@@ -681,7 +719,7 @@
                 </div>
             </div>
             <div class="category-container">
-                <div class="section collapsed" id="competencias">
+                <div class="section" id="competencias">
                     <h2><div class="section-title"><i class="fa-solid fa-star"></i><span>Principais Competências</span></div><span class="toggle-icon fa-solid fa-plus"></span></h2>
                     <div class="section-content">
                         <ul>
@@ -702,7 +740,7 @@
                 </div>
             </div>
             <div class="category-container">
-                <div class="section collapsed" id="idiomas">
+                <div class="section" id="idiomas">
                     <h2><div class="section-title"><i class="fa-solid fa-globe"></i><span>Idiomas</span></div><span class="toggle-icon fa-solid fa-plus"></span></h2>
                     <div class="section-content">
                         <ul>
@@ -716,7 +754,7 @@
         </div>
 
         <div class="container-right">
-            <div class="section collapsed experience">
+            <div class="section experience">
                 <h2><div class="section-title"><i class="fa-solid fa-briefcase"></i><span>Experiência Profissional</span></div><span class="toggle-icon fa-solid fa-plus"></span></h2>
                 <div class="section-content">
                     <p class="company">XGEN (SÃO PAULO, SP - BRASIL)</p>
@@ -759,14 +797,14 @@
                 </div>
             </div>
         </div>
-        <div class="floating-contacts">
+        <div class="floating-contacts hidden">
             <ul>
-
                 <li style="background: #e7a33e;"><a href="mailto:daniell.alves.1@gmail.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-envelope"></i></a></li>
                 <li style="background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);"><a href="https://www.instagram.com/franiel.in" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></li>
                 <li style="background: #0072b1;"><a href="https://www.linkedin.com/in/fdaf" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a></li>
                 <li style="background: #25D366;"><a href="https://wa.me/5511992091856" target="_blank" rel="noopener noreferrer"><i class="fas fa-phone"></i></a></li>
                 <li class="theme-toggle-li"><button class="toggle-button mobile-toggle" id="theme-toggle-mobile"><i class="fas fa-moon theme-toggle-icon"></i></button></li>
+                <li class="sections-toggle-li"><button class="toggle-button mobile-toggle" id="sections-toggle-mobile"><i class="fas fa-plus sections-toggle-icon"></i><span class="toggle-text">Expandir Tudo</span></button></li>
             </ul>
         </div>
     </div>
@@ -792,6 +830,31 @@
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }
 
+        // Function to toggle all sections
+        function toggleAllSections() {
+            const sections = document.querySelectorAll('.section:not(#resumo)');
+            const sectionsToggleButton = document.getElementById('sections-toggle-mobile');
+            const sectionsToggleIcon = sectionsToggleButton.querySelector('.sections-toggle-icon');
+            const sectionsToggleText = sectionsToggleButton.querySelector('.toggle-text');
+            const allCollapsed = Array.from(sections).every(section => section.classList.contains('collapsed'));
+
+            sections.forEach(section => {
+                if (allCollapsed) {
+                    section.classList.remove('collapsed');
+                } else {
+                    section.classList.add('collapsed');
+                }
+            });
+
+            if (allCollapsed) {
+                sectionsToggleIcon.classList.replace('fa-plus', 'fa-minus');
+                sectionsToggleText.textContent = 'Fechar Tudo';
+            } else {
+                sectionsToggleIcon.classList.replace('fa-minus', 'fa-plus');
+                sectionsToggleText.textContent = 'Expandir Tudo';
+            }
+        }
+
         // Initialize theme
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
@@ -807,6 +870,7 @@
         // Toggle theme on button clicks
         document.getElementById('theme-toggle').addEventListener('click', toggleDarkMode);
         document.getElementById('theme-toggle-mobile').addEventListener('click', toggleDarkMode);
+        document.getElementById('sections-toggle-mobile').addEventListener('click', toggleAllSections);
 
         // Asteroids animation for dark mode
         function startAsteroidsAnimation() {
@@ -973,8 +1037,7 @@
             }
 
             updateSectionState();
-            window.addEventListener('refresh', updateSectionState);
+            window.addEventListener('resize', updateSectionState);
         });
     </script>
-</body>
-</html>
+</body></html>
