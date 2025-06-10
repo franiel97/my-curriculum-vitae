@@ -14,6 +14,23 @@
             background-color: #8fd1ed;
             color: #1a1d33fd;
             transition: all 0.4s ease;
+            position: relative;
+            overflow-x: hidden;
+        }
+        canvas#background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        .toggle-container {
+            position: absolute;
+            top: 10px;
+            right: 5px;
+            z-index: 2;
         }
         .container-top {
             max-width: 100%;
@@ -24,13 +41,16 @@
             box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
             transition: all 0.4s ease;
             position: relative;
+            z-index: 1;
         }
         .container-bottom {
             display: flex;
             max-width: 100%;
             width: 100%;
-            margin: 0 auto 10px;
+            margin: 0 auto 70px;
             gap: 15px;
+            position: relative;
+            z-index: 1;
         }
         .container-left {
             width: 30%;
@@ -79,6 +99,7 @@
             font-size: 2.8em;
             background: linear-gradient(90deg, #03315c, #000000);
             -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         .header p {
             margin: 5px 0;
@@ -93,31 +114,28 @@
             color: #8C1946;
             font-size: 1.2em;
         }
-        .toggle-container {
-            text-align: right;
-            margin-bottom: 10px;
-        }
         .toggle-button {
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
+            border-radius: 10px;
+            padding: 8px 16px;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             border: none;
-            background: linear-gradient(90deg, #0c0fb8, #080149fb);
-            color: #ece498;
+            background: linear-gradient(90deg, #0c0fb8, #080149fb) ;
+            color: #ece498 !important;
             cursor: pointer;
             font-size: 0.95em;
-            transition: transform 0.2s;
+            transition: transform 0.2s, background 0.3s;
             margin: 20px;
         }
+        .toggle-button i {
+            margin-right: 8px;
+        }
         .dark-mode .toggle-button {
-            background: linear-gradient(180deg, #08a1dd, #0081fafb);
-            
+            background: linear-gradient(180deg, #48c7fa, #0081fafb);
         }
         .toggle-button:hover {
-            transform: scale(1.05);
+            transform: scale(1.0);
         }
         .section {
             opacity: 0;
@@ -177,12 +195,11 @@
             overflow: hidden;
         }
         .section.collapsed .toggle-icon::before {
-            content: '\f067'; /* Font Awesome plus icon */
+            content: '\f067';
         }
         .section:not(.collapsed) .toggle-icon::before {
-            content: '\f068'; /* Font Awesome minus icon */
+            content: '\f068';
         }
-        /* Ensure Resumo section is always expanded */
         #resumo.section .section-content {
             max-height: none !important;
             opacity: 1 !important;
@@ -212,8 +229,8 @@
         }
         .skill-bar span, .lang-bar span {
             position: absolute;
-            right: 5px;
-            top: 50%;
+            right: 10px;
+            top: 55%;
             transform: translateY(-50%);
             color: #001435;
         }
@@ -224,12 +241,21 @@
             color: #e2e8f0;
         }
         .contact-links a {
-            color: #f845bc;
+            color: #8C1946;
             text-decoration: none;
             transition: color 0.3s;
         }
         .contact-links a:hover {
-            color: #ffa29c;
+            color: #de1965;
+            text-decoration: underline;
+        }
+        .dark-mode .contact-links a {
+            color: #de1965;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .dark-mode .contact-links a:hover {
+            color: #f845bc;
             text-decoration: underline;
         }
         .contact-links li {
@@ -243,37 +269,37 @@
             transition: color 0.3s;
         }
         .contact-links li:nth-child(1) i {
-            color: #25D366; /* WhatsApp color */
+            color: #25D366;
         }
         .contact-links li:nth-child(2) i {
-            color: #ed9121; /* Email color */
+            color: #ed9121;
         }
         .contact-links li:nth-child(3) i {
-            color: #0072b1; /* LinkedIn color */
+            color: #0072b1;
         }
         .contact-links li:nth-child(4) i {
-            color: #000000; /* instagram color */
+            color: #000000;
         }
         .contact-links li:nth-child(5) i {
-            color: #244dd1; /* facebook color */
+            color: #244dd1;
         }
         .contact-links a:hover i {
             color: #63b3ed;
         }
         .dark-mode .contact-links i {
-            color: #25D366; /* WhatsApp color */
+            color: #25D366;
         }
         .dark-mode .contact-links li:nth-child(2) i {
-            color: #ed9121; /* Email color */
+            color: #ed9121;
         }
         .dark-mode .contact-links li:nth-child(3) i {
-            color: #0072b1; /* LinkedIn color */
+            color: #0072b1;
         }
-        .dark-mode.contact-links li:nth-child(4) i {
-            color: #000000; /* instagram color */
+        .dark-mode .contact-links li:nth-child(4) i {
+            color: #000000;
         }
-        .dark-mode.contact-links li:nth-child(5) i {
-            color: #244dd1; /* facebook color */
+        .dark-mode .contact-links li:nth-child(5) i {
+            color: #244dd1;
         }
         .dark-mode .contact-links a:hover i {
             color: #ed28f4;
@@ -283,7 +309,7 @@
         }
         .proficiency {
             font-weight: 300;
-            font-size: 12px !important; 
+            font-size: 12px !important;
             color: #718096;
         }
         .dark-mode .proficiency {
@@ -291,9 +317,9 @@
         }
         .competencias-leg {
             font-weight: 300;
-                       font-size: 12px !important; 
-            color: #718096;
-            margin-left: 5px;
+            font-size: 12px !important;
+            color: #394557;
+            margin-left: 3px;
         }
         .dark-mode .competencias-leg {
             color: #a0aec0;
@@ -333,7 +359,8 @@
             display: none;
             position: fixed;
             bottom: 20px;
-            right: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 1000;
         }
         .floating-contacts ul {
@@ -361,10 +388,15 @@
             color: #fff;
             font-size: 1.2em;
         }
-        .dark-mode .floating-contacts li {
-            background: #63b3ed;
+        .floating-contacts li.theme-toggle-li {
+            background: linear-gradient(90deg, #0c0fb8, #080149fb);
         }
-        /* Responsive Design */
+        .dark-mode .floating-contacts li.theme-toggle-li {
+            background: linear-gradient(180deg, #54c2ee, #1165b3fb);
+        }
+        .dark-mode .floating-contacts li:not(.theme-toggle-li) {
+            background: linear-gradient(180deg, #54c2ee, #1165b3fb);
+        }
         @media (max-width: 600px) {
             body {
                 padding: 10px 20px 10px 10px;
@@ -383,11 +415,49 @@
             .contact-section {
                 display: none;
             }
+            .toggle-container {
+                display: none;
+            }
             .floating-contacts {
                 display: block;
+                bottom: 10px;
             }
-            .floating-contacts.hidden {
-                display: none;
+            .floating-contacts ul {
+                flex-direction: row;
+                gap: 10px;
+                background: rgba(0, 0, 0, 0.3);
+                padding: 8px 16px;
+                border-radius: 25px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 1);
+            }
+            .dark-mode .floating-contacts ul {
+                flex-direction: row;
+                gap: 10px;
+                background: rgba(179, 179, 179, 0.3);
+                padding: 8px 16px;
+                border-radius: 25px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 1);
+            }
+            .floating-contacts li {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+            .floating-contacts .mobile-toggle {
+                border-radius: 50%;
+
+                padding: 0;
+                background: linear-gradient(90deg, #0c0fb8, #080149fb);
+                border: none;
+            }
+            .dark-mode .floating-contacts .mobile-toggle {
+            background: linear-gradient(180deg, #54c2ee, #1165b3fb);
+            }
+            .floating-contacts .mobile-toggle:hover {
+                transform: scale(1.1);
+            }
+            .floating-contacts .mobile-toggle i {
+                margin: 0;
             }
             .header h1 {
                 font-size: 1.8em;
@@ -417,7 +487,6 @@
             .section:not(.collapsed) {
                 max-height: none !important;
             }
-            /* Ensure Resumo section is always expanded in mobile */
             #resumo.section .section-content {
                 max-height: none !important;
                 opacity: 1 !important;
@@ -482,7 +551,23 @@
             .floating-contacts i {
                 font-size: 1em;
             }
+            .floating-contacts ul {
+                padding: 6px 12px;
+            }
+            .floating-contacts .mobile-toggle {
+                width: 35px;
+                height: 35px;
+            }
         }
+        @media (max-width:901px){
+        .toggle-container {
+            position: absolute;
+            top: 50px;
+            right: 5px;
+            z-index: 2;
+        }
+        }
+
         @media (min-width: 601px) {
             .container-top, .container-bottom {
                 max-width: 1200px;
@@ -527,12 +612,14 @@
     </style>
 </head>
 <body>
+    <canvas id="background-canvas"></canvas>
+    <div class="toggle-container">
+        <button class="toggle-button" id="theme-toggle" title="Alternar Modo Escuro">
+            <i class="fas fa-moon theme-toggle-icon"></i>
+            <span class="toggle-text">Dark Mode</span>
+        </button>
+    </div>
     <div class="container-top">
-        <div class="toggle-container" style="position: absolute; top: 20px; right: 20px;">
-            <button class="toggle-button" id="theme-toggle" title="Alternar Modo Escuro">
-                <i class="fas fa-moon theme-toggle-icon"></i>
-            </button>
-        </div>
         <div class="header">
             <h1>Francisco Daniel Reis A. Ferreira</h1>
             <div class="endereco">
@@ -560,7 +647,7 @@
                             <li><i class="fas fa-envelope"></i><a href="mailto:daniell.alves.1@gmail.com" target="_blank" rel="noopener noreferrer">daniell.alves.1@gmail.com</a></li>
                             <li><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/fdaf" target="_blank" rel="noopener noreferrer">linkedin.com/in/fdaf</a></li>
                             <li><i class="fab fa-instagram"></i><a href="https://www.instagram.com/franiel" target="_blank" rel="noopener noreferrer">instagram.com/franiel</a></li>
-                            <li><i class="fab fa-facebook"></i><a href="https://www.facebook.com/f.daniel.alves.f" target="_blank" rel="noopener noreferrer">facebook.com/f.daniel.alves.f</a></li>
+
                         </ul>
                     </div>
                 </div>
@@ -583,7 +670,7 @@
                         <ul>
                             <li>Garantia de Qualidade<div class="lang-bar"><div style="width: 85%"></div><span>85%</span></div></li>
                             <li>Postman<div class="lang-bar"><div style="width: 40%"></div><span>40%</span></div></li>
-                            <li>Testes Manuais <span class="competencias-leg">(Testes funcionais, regressivos, exploratórios e de integração)</span> <div class="lang-bar"><div style="width: 90%"></div><span>90%</span></div></li>
+                            <li>Testes Manuais<span class="competencias-leg">(Testes funcionais, regressivos, exploratórios e de integração)</span> <div class="lang-bar"><div style="width: 90%"></div><span>90%</span></div></li>
                             <li>Testes Automatizados<div class="lang-bar"><div style="width: 30%"></div><span>30%</span></div></li>
                             <li>Análise de Logs e troubleshooting<div class="lang-bar"><div style="width: 90%"></div><span>90%</span></div></li>
                             <li>Práticas Ágeis<span class="competencias-leg">(Scrum/Kanban e cultura DevOps)</span> <div class="lang-bar"><div style="width: 90%"></div><span>90%</span></div></li>
@@ -655,62 +742,187 @@
                 </div>
             </div>
         </div>
-        <div class="floating-contacts hidden">
+        <div class="floating-contacts">
             <ul>
-                <li style="background: #25D366;"><a href="https://wa.me/5511992091856" target="_blank" rel="noopener noreferrer"><i class="fas fa-phone"></i></a></li>
+
                 <li style="background: #e7a33e;"><a href="mailto:daniell.alves.1@gmail.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-envelope"></i></a></li>
+                <li style="background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);"><a href="https://www.instagram.com/franiel.in" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></li>
                 <li style="background: #0072b1;"><a href="https://www.linkedin.com/in/fdaf" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a></li>
-                <li style="background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
-"><a href="https://www.instagram.com/franiel.zip" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></li>           
-                <li style="background: #2596d3;"><a href="https://www.facebook.com/f.daniel.alves.f" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a></li>
+                <li style="background: #25D366;"><a href="https://wa.me/5511992091856" target="_blank" rel="noopener noreferrer"><i class="fas fa-phone"></i></a></li>
+                <li class="theme-toggle-li"><button class="toggle-button mobile-toggle" id="theme-toggle-mobile"><i class="fas fa-moon theme-toggle-icon"></i></button></li>
             </ul>
         </div>
     </div>
     <script>
-        function toggleDarkMode(enable) {
-            if (enable) {
-                document.body.classList.add('dark-mode');
-                document.querySelector('.theme-toggle-icon').classList.replace('fa-moon', 'fa-sun');
+        function toggleDarkMode() {
+            const body = document.body;
+            const toggleButton = document.getElementById('theme-toggle');
+            const mobileToggleButton = document.getElementById('theme-toggle-mobile');
+            const toggleText = toggleButton.querySelector('.toggle-text');
+            const isDark = body.classList.toggle('dark-mode');
+
+            if (isDark) {
+                toggleButton.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+                mobileToggleButton.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+                toggleText.textContent = 'Dark Mode';
+                startAsteroidsAnimation();
             } else {
-                document.body.classList.remove('dark-mode');
-                document.querySelector('.theme-toggle-icon').classList.replace('fa-sun', 'fa-moon');
+                toggleButton.querySelector('i').classList.replace('fa-sun', 'fa-moon');
+                mobileToggleButton.querySelector('i').classList.replace('fa-sun', 'fa-moon');
+                toggleText.textContent = 'Dark Mode';
+                startLeavesAnimation();
             }
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }
 
+        // Initialize theme
         const savedTheme = localStorage.getItem('theme');
-
         if (savedTheme === 'dark') {
-            toggleDarkMode(true);
-        } else if (savedTheme === 'light') {
-            toggleDarkMode(false);
+            document.body.classList.add('dark-mode');
+            document.getElementById('theme-toggle').querySelector('.toggle-text').textContent = 'Clear Mode';
+            document.getElementById('theme-toggle').querySelector('i').classList.replace('fa-moon', 'fa-sun');
+            document.getElementById('theme-toggle-mobile').querySelector('i').classList.replace('fa-moon', 'fa-sun');
+            startAsteroidsAnimation();
         } else {
-            const now = new Date();
-            const hour = now.getHours();
-            if (hour >= 18 || hour < 6) {
-                toggleDarkMode(true);
-                localStorage.setItem('theme', 'dark');
-            } else {
-                toggleDarkMode(false);
-                localStorage.setItem('theme', 'light');
-            }
+            startLeavesAnimation();
         }
 
-        document.getElementById('theme-toggle').addEventListener('click', () => {
-            const isDark = document.body.classList.contains('dark-mode');
-            toggleDarkMode(!isDark);
-            localStorage.setItem('theme', isDark ? 'light' : 'dark');
-        });
+        // Toggle theme on button clicks
+        document.getElementById('theme-toggle').addEventListener('click', toggleDarkMode);
+        document.getElementById('theme-toggle-mobile').addEventListener('click', toggleDarkMode);
+
+        // Asteroids animation for dark mode
+        function startAsteroidsAnimation() {
+            const canvas = document.getElementById('background-canvas');
+            const ctx = canvas.getContext('2d');
+            let asteroids = [];
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            function createAsteroid() {
+                const size = Math.random() * 4 + 2;
+                return {
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: size,
+                    sides: Math.floor(Math.random() * 6) + 4
+                };
+            }
+
+            for (let i = 0; i < 20; i++) {
+                asteroids.push(createAsteroid());
+            }
+
+            function animateAsteroids() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                asteroids.forEach(a => {
+                    ctx.beginPath();
+                    for (let i = 0; i < a.sides; i++) {
+                        const angle = (i / a.sides) * Math.PI * 2;
+                        ctx.lineTo(
+                            a.x + Math.cos(angle) * a.size,
+                            a.y + Math.sin(angle) * a.size
+                        );
+                    }
+                    ctx.closePath();
+                    ctx.fill();
+
+                    a.x += a.vx;
+                    a.y += a.vy;
+
+                    if (a.x < -a.size) a.x += canvas.width + a.size * 2;
+                    if (a.x > canvas.width + a.size) a.x -= canvas.width + a.size * 2;
+                    if (a.y < -a.size) a.y += canvas.height + a.size * 2;
+                    if (a.y > canvas.height + a.size) a.y -= canvas.height + a.size * 2;
+                });
+
+                if (document.body.classList.contains('dark-mode')) {
+                    requestAnimationFrame(animateAsteroids);
+                }
+            }
+
+            animateAsteroids();
+        }
+
+        // Leaves animation for light mode
+        function startLeavesAnimation() {
+            const canvas = document.getElementById('background-canvas');
+            const ctx = canvas.getContext('2d');
+            let leaves = [];
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            function createLeaf() {
+                return {
+                    x: Math.random() * canvas.width,
+                    y: -10,
+                    vx: (Math.random() - 0.5) * 0.2,
+                    vy: Math.random() * 0.5 + 0.2,
+                    size: Math.random() * 5 + 1,
+                    angle: Math.random() * Math.PI * 2,
+                    spin: Math.random() * 0.02 - 0.01
+                }
+            }
+
+            for (let i = 0; i < 5; i++) {
+                leaves.push(createLeaf());
+            }
+
+            function animateLeaves() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'rgba(200, 200, 200, 0.8)';
+                leaves.forEach(l => {
+                    ctx.save();
+                    ctx.translate(l.x, l.y);
+                    ctx.rotate(l.angle);
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, l.size, l.size / 2, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+
+                    l.x += l.vx;
+                    l.y += l.vy;
+                    l.angle += l.spin;
+
+                    if (l.y > canvas.height + l.size) {
+                        l.y = -l.size;
+                        l.x = Math.random() * canvas.width;
+                    }
+                });
+
+                if (!document.body.classList.contains('dark-mode')) {
+                    requestAnimationFrame(animateLeaves);
+                }
+            }
+
+            animateLeaves();
+        }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const resumoSection = document.getElementById('competencias');
+            const resumoSection = document.querySelector('.experience');
             const floatingContacts = document.querySelector('.floating-contacts');
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        floatingContacts.classList.remove('hidden');
-                    } else {
                         floatingContacts.classList.add('hidden');
+                    } else {
+                        floatingContacts.classList.remove('hidden');
                     }
                 });
             }, {
@@ -720,13 +932,10 @@
 
             observer.observe(resumoSection);
 
-            // Add toggle functionality for mobile sections, excluding Resumo
             const sectionHeaders = document.querySelectorAll('.section h2');
             sectionHeaders.forEach(header => {
                 const section = header.parentElement;
-                // Skip Resumo section
                 if (section.id !== 'resumo') {
-                    // Add click event listener for mobile view (≤600px)
                     header.addEventListener('click', () => {
                         if (window.innerWidth <= 600) {
                             section.classList.toggle('collapsed');
@@ -735,24 +944,19 @@
                 }
             });
 
-            // Ensure sections are expanded in desktop mode and handle initial state
             function updateSectionState() {
                 const sections = document.querySelectorAll('.section');
                 sections.forEach(section => {
                     if (window.innerWidth > 600) {
                         section.classList.remove('collapsed');
-                    } else if (section.id !== 'resumo' && 'idiomas') {
-                        // In mobile view, ensure non-Resumo sections start collapsed
+                    } else if (section.id !== 'resumo') {
                         section.classList.add('collapsed');
                     }
                 });
             }
 
-            // Initial check
             updateSectionState();
-
-            // Update on window resize
-            window.addEventListener('reload', updateSectionState);
+            window.addEventListener('resize', updateSectionState);
         });
     </script>
 </body>
