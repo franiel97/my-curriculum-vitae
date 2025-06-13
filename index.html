@@ -123,7 +123,7 @@
         }
         .toggle-button {
             border-radius: 10px;
-            padding: 8px 16px;
+            padding: 8px 8px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -444,7 +444,7 @@
         }
         @media (max-width: 600px) {
             body {
-                padding: 10px 20px 10px 10px;
+                padding: 10px 10px 10px 10px;
             }
             .container-top, .category-container, .container-right {
                 padding: 5px 5px;
@@ -469,11 +469,11 @@
             }
             .floating-contacts ul {
                 flex-direction: row;
-                gap: 10px;
-                background: rgba(0, 0, 0, 0.3);
+                gap: 2px;
+                background: rgba(0, 0, 0, 0.2);
                 padding: 8px 16px;
                 border-radius: 25px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 1);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 1.5);
             }
             .dark-mode .floating-contacts ul {
                 flex-direction: row;
@@ -481,16 +481,16 @@
                 background: rgba(179, 179, 179, 0.2);
                 padding: 8px 16px;
                 border-radius: 25px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 1);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 1.5);
 				backdrop-filter: blur(3px);
             }
             .floating-contacts li {
-                width: 40px;
-                height: 40px;
+                width: 50px;
+                height: 50px;
                 border-radius: 50%;
             }
             .floating-contacts li.sections-toggle-li {
-                height: 40px;
+                height: 50px;
             }
             .floating-contacts .mobile-toggle {
                 border-radius: 50%;
@@ -602,12 +602,13 @@
             }
             .floating-contacts li.sections-toggle-li {
                 height: 35px;
+				width: 75px;
             }
             .floating-contacts i {
                 font-size: 1em;
             }
             .floating-contacts ul {
-                padding: 6px 12px;
+                padding: 6px 6px;
             }
             .floating-contacts li.sections-toggle-li .mobile-toggle span {
                 font-size: 0.8em;
@@ -718,8 +719,10 @@
                     <h2><div class="section-title"><i class="fa-solid fa-graduation-cap"></i><span>Formação Acadêmica</span></div><span class="toggle-icon fa-solid fa-plus"></span></h2>
                     <div class="section-content">
                         <p id="college-name">
-                            <strong>Universidade Paulista (UNIP)</strong><span class="competencias-leg">(2016 à 2019)</span>
+                            <strong>Universidade Paulista (UNIP)</strong>
+							<span class="competencias-leg">(2016 à 2019)</span>
                         </p>
+						
                         <p>Graduação em Ciência da Computação</p>
                     </div>
                 </div>
@@ -732,12 +735,11 @@
                             <li>Garantia de Qualidade<div class="lang-bar"><div style="width: 85%"></div><span>85%</span></div></li>
                             <li>Postman<div class="lang-bar"><div style="width: 40%"></div><span>40%</span></div></li>
                             <li>Testes Manuais<span class="competencias-leg">(Testes funcionais, regressivos, exploratórios e de integração)</span> <div class="lang-bar"><div style="width: 90%"></div><span>90%</span></div></li>
-                            <li>Testes Automatizados<div class="lang-bar"><div style="width: 30%"></div><span>30%</span></div></li>
+                            <li>Testes Automatizados<span class="competencias-leg">(Cypress)</span><div class="lang-bar"><div style="width: 30%"></div><span>30%</span></div></li>
                             <li>Análise de Logs e troubleshooting<div class="lang-bar"><div style="width: 90%"></div><span>90%</span></div></li>
                             <li>Práticas Ágeis<span class="competencias-leg">(Scrum/Kanban e cultura DevOps)</span> <div class="lang-bar"><div style="width: 90%"></div><span>90%</span></div></li>
                             <li>Atenção à Detalhes<div class="lang-bar"><div style="width: 80%"></div><span>80%</span></div></li>
-                            <li>Suporte Técnico<div class="lang-bar"><div style="width: 95%"></div><span>95%</span></div></li>
-                            <li>Atendimento ao Cliente<span class="competencias-leg">(Presencial, chat, e-mail e telefone)</span><div class="lang-bar"><div style="width: 100%"></div><span>100%</span></div></li>
+                            <li>Suporte Técnico<span class="competencias-leg">(Presencial, chat, e-mail e telefone)</span><div class="lang-bar"><div style="width: 100%"></div><span>100%</span></div></li>
                             <li>Diagnósticos de Hardware<div class="lang-bar"><div style="width: 80%"></div><span>80%</span></div></li>
                             <li>Aprendizado Rápido<div class="lang-bar"><div style="width: 100%"></div><span>100%</span></div></li>
                             <li>Boa Comunicação<div class="lang-bar"><div style="width: 100%"></div><span>100%</span></div></li>
@@ -751,8 +753,8 @@
                     <div class="section-content">
                         <ul>
                             <li>Português <span class="proficiency">(Nativo)</span><div class="lang-bar"><div style="width: 100%"></div><span>100%</span></div></li>
-                            <li>Inglês <span class="proficiency">(Intermediário/Técnico)</span><div class="lang-bar"><div style="width: 60%"></div><span>60%</span></div></li>
-                            <li>Espanhol <span class="proficiency">(Intermediário)</span><div class="lang-bar"><div style="width: 55%"></div><span>55%</span></div></li>
+                            <li>Inglês <span class="proficiency">(Intermediário/Técnico)</span><div class="lang-bar"><div style="width: 45%"></div><span>45%</span></div></li>
+                            <li>Espanhol <span class="proficiency">(Intermediário)</span><div class="lang-bar"><div style="width: 40%"></div><span>40%</span></div></li>
                         </ul>
                     </div>
                 </div>
@@ -773,7 +775,7 @@
                     <p class="job-title">Analista de suporte sênior I - Dezembro/2021 à Junho/2022 (7 meses)</p>
                     <ul class="job-description">
                         <li>Atendimento de 2º nível, resolvendo incidentes complexos em aplicações Web.</li>
-                        <li>Gestão de incidentes críticos, coordenando equipes de Desenvolvimento e Infraestrutura, com foco em DevOps e eficiência operacional</li>
+                        <li>Gestão de incidentes críticos, coordenando equipes de Desenvolvimento e Infraestrutura, com foco em DevOps e eficiência operacional.</li>
                     </ul>
                     <p class="job-title">Analista de suporte pleno II - Março/2020 à Dezembro/2021 (1 ano e 10 meses)</p>
                     <ul class="job-description">
@@ -797,7 +799,7 @@
                     <p class="company">RASSINI-NHK AUTOMOTIVE (SÃO BERNARDO DO CAMPO, SP - Brasil)</p>
                     <p class="job-title">Auxiliar Administrativo - Maio/2014 à Maio/2016 (2 anos e 1 mês)</p>
                     <ul class="job-description">
-                        <li>Análise de planilhas no Excel e projetos de engenharia automobilística em AutoCAD</li>
+                        <li>Análise de planilhas no Excel e projetos de engenharia automobilística em AutoCAD.</li>
                         <li>Elaboração de relatórios analíticos e apresentações executivas em PowerPoint, analisando processos fabris para otimizar a produção.</li>
                     </ul>
                 </div>
@@ -1050,4 +1052,5 @@
             window.addEventListener('reload', updateSectionState);
         });
     </script>
-</body></html>
+</body>
+</html>
