@@ -349,7 +349,7 @@
             color: #7bd3f7;
         }
         .experience .job-description {
-            font-size: 12px;
+            font-size: 14px;
             padding-left: 30px;
         }
         .experience .job-description li {
@@ -571,7 +571,7 @@
                 font-size: 14px;
             }
             .experience .job-description {
-                font-size: 12px;
+                font-size: 14px;
             }
         }
         @media (max-width: 400px) {
@@ -825,12 +825,12 @@
             if (isDark) {
                 toggleButton.querySelector('i').classList.replace('fa-moon', 'fa-sun');
                 mobileToggleButton.querySelector('i').classList.replace('fa-moon', 'fa-sun');
-                toggleText.textContent = 'Dark Mode';
+                toggleText.textContent = 'Modo Claro';
                 startAsteroidsAnimation();
             } else {
                 toggleButton.querySelector('i').classList.replace('fa-sun', 'fa-moon');
                 mobileToggleButton.querySelector('i').classList.replace('fa-sun', 'fa-moon');
-                toggleText.textContent = 'Dark Mode';
+                toggleText.textContent = 'Modo Escuro';
                 startLeavesAnimation();
             }
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
