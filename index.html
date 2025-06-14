@@ -10,7 +10,7 @@
     body {
         font-family: 'Roboto', sans-serif;
         padding: 5px 10px;
-        background-color: #8fd1ed;
+        background-color: #b7eaffad;
         color: #1a1d33;
         transition: all 0.4s ease;
         position: relative;
@@ -23,7 +23,7 @@
         width: 100%;
         height: 100%;
         z-index: -1;
-        opacity: 2; /* Reduzido para evitar sobrecarga visual com mais folhas */
+        opacity: 2;
     }
     .toggle-container {
         position: absolute;
@@ -34,10 +34,11 @@
     .container-top {
         max-width: 100%;
         margin: 0 auto 15px;
-        background: #cceaf7;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
         padding: 10px;
         border-radius: 15px;
-        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
         transition: all 0.4s ease;
         position: relative;
         z-index: 1;
@@ -58,18 +59,20 @@
         gap: 15px;
     }
     .category-container {
-        background: #cceaf7;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
         padding: 10px;
         border-radius: 15px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         transition: all 0.4s ease;
     }
     .container-right {
         width: 70%;
-        background: #cceaf7;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
         padding: 10px;
         border-radius: 15px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         transition: all 0.4s ease;
     }
     .dark-mode {
@@ -79,8 +82,9 @@
     .dark-mode .container-top,
     .dark-mode .category-container,
     .dark-mode .container-right {
-        background: #2d3748;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        background: rgba(45, 55, 72, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
     .dark-mode .section h2 {
         background: linear-gradient(90deg, #4a90e2, #7bc6ff);
@@ -255,7 +259,7 @@
         right: 10px;
         top: 55%;
         transform: translateY(-50%);
-        color: #1a202c;
+        color: #1a1d33;
     }
     .dark-mode .skill-bar span, .dark-mode .lang-bar span {
         color: #e2e8f0;
@@ -1000,7 +1004,7 @@
                 }
             }
 
-            for (let i = 0; i < 100; i++) { // Aumentado para 30 folhas
+            for (let i = 0; i < 100; i++) {
                 leaves.push(createLeaf());
             }
 
