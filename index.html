@@ -922,15 +922,17 @@
         // Initialize theme
         const savedTheme = localStorage.getItem('theme');
 		const body = document.body;
-        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+		const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+
         
 		if (savedTheme === 'dark') {
             document.body.classList.add('dark-mode');
             document.getElementById('theme-toggle').querySelector('.toggle-text').textContent = 'Modo Claro';
             document.getElementById('theme-toggle').querySelector('i').classList.replace('fa-moon', 'fa-sun');
             document.getElementById('theme-toggle-mobile').querySelector('i').classList.replace('fa-moon', 'fa-sun');
-
+	        metaThemeColor.setAttribute("content", "#1a202c"); 
             startAsteroidsAnimation();
+			
         } else {
             startLeavesAnimation();
         }
