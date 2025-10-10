@@ -474,7 +474,7 @@
         background: linear-gradient(90deg, #4a90e2, #7bc6ff);
     }
 	
-    @media (max-width: 600px) {
+    @media (max-width: 720px) {
         body {
             padding: 0px 15px 30px 5px;
         }
@@ -619,7 +619,7 @@
 			margin: 2px 4px;
 		}
     }
-    @media (max-width: 400px) {
+    @media (max-width: 640px) {
         body {
             padding: 0px 15px 30px 5px;
         }
@@ -678,6 +678,16 @@
         }
         .dark-mode .header h1 {
             font-size: 2.8em;
+        }
+		.floating-contacts ul {
+            flex-direction: row;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px 8px;
+            border-radius: 50px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 1.5);
+	        backdrop-filter: blur(1.8px);
+
         }
     }
     @media (min-width: 601px) {
@@ -763,7 +773,7 @@
                     <div class="section-content">
                         <ul class="contact-links">
                             <li><i class="fas fa-phone"></i><a href="https://wa.me/5511992091856" target="_blank" rel="noopener noreferrer">(11) 99209-1856 (WhatsApp)</a></li>
-                            <li><i class="fas fa-envelope"></i><a href="mailto:franiel.inc@proton.me" target="_blank" rel="noopener noreferrer">| Proton Mail |  </a><a href="mailto:daniell.alves.1@gmail.com" target="_blank" rel="noopener noreferrer">| GMAIL |</a></li>
+                            <li><i class="fas fa-envelope"></i><a href="mailto:daniell.alves.1@gmail.com" target="_blank" rel="noopener noreferrer">daniell.alves.1@gmail.com</a></li>
                             <li><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/fdaf" target="_blank" rel="noopener noreferrer">/in/fdaf</a></li>
                             <li><i class="fab fa-instagram"></i><a href="https://www.instagram.com/franiel.zip" target="_blank" rel="noopener noreferrer">/franiel.zip</a></li>
 						</ul>
@@ -1037,14 +1047,14 @@
                     sway: Math.random() * 0.1 + 0.0,
                     color: `hsl(${Math.random() * 60 + 90}, 70%, ${Math.random() * 20 + 40}%)`
                 }*/
-			/*const size = Math.random() * 6 + 3;*/
+			const size = Math.random() * 4 + 2;
                 return {
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
                     vx: (Math.random() - 0.5) * 0.5,
                     vy: (Math.random() - 0.5) * 0.5,
                     size: size,
-                    sides: Math.floor(Math.random() * 8) + 6
+                    sides: Math.floor(Math.random() * 6) + 4
                 };
             }
 
@@ -1137,7 +1147,7 @@
             langBars.forEach((bar, index) => {
                 setTimeout(() => {
                     bar.classList.add('animate');
-                }, index * 1300);
+                }, index * 800);
             });
 
             // Animate floating contacts buttons on click for mobile
@@ -1148,7 +1158,7 @@
                         button.classList.add('active');
                         setTimeout(() => {
                             button.classList.remove('active');
-                        }, 50); // Match duration of clickPulse animation
+                        }, 100); // Match duration of clickPulse animation
                     }
                 });
             });
