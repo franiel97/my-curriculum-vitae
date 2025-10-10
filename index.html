@@ -37,7 +37,7 @@
 		max-width: 100%;
 		margin: 0 auto 15px;
 		background: rgb(47 177 255 / 11%);
-		backdrop-filter: blur(10px);
+		backdrop-filter: blur(8px);
 		padding: 10px;
 		border-radius: 15px;
 		box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
@@ -62,7 +62,7 @@
     }
     .category-container {
 		background: rgb(47 177 255 / 11%);
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(8px);
         padding: 10px;
         border-radius: 15px;
 		box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
@@ -71,7 +71,7 @@
     .container-right {
         width: 70%;
 		background: rgb(47 177 255 / 11%);
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(8px);
         padding: 10px;
         border-radius: 15px;
 		box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
@@ -85,7 +85,7 @@
     .dark-mode .category-container,
     .dark-mode .container-right {
         background: rgba(45, 55, 72, 0.1);
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(8px);
 		box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     }
     .dark-mode .section h2 {
@@ -473,6 +473,7 @@
     .dark-mode .floating-contacts li:not(.theme-toggle-li):not(.sections-toggle-li) {
         background: linear-gradient(90deg, #4a90e2, #7bc6ff);
     }
+	
     @media (max-width: 600px) {
         body {
             padding: 0px 15px 30px 5px;
@@ -500,18 +501,18 @@
         }
         .floating-contacts ul {
             flex-direction: row;
-            gap: 2px;
+            gap: 8px;
             background: rgba(0, 0, 0, 0.2);
             padding: 8px 8px;
             border-radius: 50px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 1.5);
-	        backdrop-filter: blur(3px);
+	        backdrop-filter: blur(1.8px);
 
         }
         .dark-mode .floating-contacts ul {
             background: rgba(179, 179, 179, 0.2);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 1.5);
-            backdrop-filter: blur(3px);
+            backdrop-filter: blur(1.8px);
         }
         .floating-contacts li {
             width: 50px;
@@ -615,7 +616,7 @@
 			height: 40px;
 			border: 1px solid;
 			padding: 0px 0px 4px 0px;
-			margin: 3px 8px;
+			margin: 2px 4px;
 		}
     }
     @media (max-width: 400px) {
@@ -653,6 +654,7 @@
         }
         .floating-contacts ul {
             padding: 6px 6px;
+			gap: 2px;
         }
         .floating-contacts li.sections-toggle-li .mobile-toggle span {
             font-size: 0.8em;
@@ -761,10 +763,10 @@
                     <div class="section-content">
                         <ul class="contact-links">
                             <li><i class="fas fa-phone"></i><a href="https://wa.me/5511992091856" target="_blank" rel="noopener noreferrer">(11) 99209-1856 (WhatsApp)</a></li>
-                            <li><i class="fas fa-envelope"></i><a href="mailto:franiel.inc@proton.me" target="_blank" rel="noopener noreferrer">| Proton Mail |</a><a href="mailto:daniell.alves.1@gmail.com" target="_blank" rel="noopener noreferrer">| GMAIL |</a></li>
+                            <li><i class="fas fa-envelope"></i><a href="mailto:franiel.inc@proton.me" target="_blank" rel="noopener noreferrer">| Proton Mail |  </a><a href="mailto:daniell.alves.1@gmail.com" target="_blank" rel="noopener noreferrer">| GMAIL |</a></li>
                             <li><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/fdaf" target="_blank" rel="noopener noreferrer">/in/fdaf</a></li>
                             <li><i class="fab fa-instagram"></i><a href="https://www.instagram.com/franiel.zip" target="_blank" rel="noopener noreferrer">/franiel.zip</a></li>
-                        </ul>
+						</ul>
                     </div>
                 </div>
             </div>
@@ -1024,7 +1026,7 @@
             window.addEventListener('resize', resizeCanvas);
 
             function createLeaf() {
-                return {
+                /*return {
                     x: Math.random() * canvas.width,
                     y: -10,
                     vx: Math.sin(Math.random() * Math.PI) * 0.5,
@@ -1034,7 +1036,16 @@
                     spin: Math.random() * 0.05 - 0.025,
                     sway: Math.random() * 0.1 + 0.0,
                     color: `hsl(${Math.random() * 60 + 90}, 70%, ${Math.random() * 20 + 40}%)`
-                }
+                }*/
+			const size = Math.random() * 6 + 3;
+                return {
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: size,
+                    sides: Math.floor(Math.random() * 8) + 6
+                };
             }
 
             for (let i = 0; i < 60; i++) {
@@ -1126,7 +1137,7 @@
             langBars.forEach((bar, index) => {
                 setTimeout(() => {
                     bar.classList.add('animate');
-                }, index * 200);
+                }, index * 1300);
             });
 
             // Animate floating contacts buttons on click for mobile
@@ -1137,7 +1148,7 @@
                         button.classList.add('active');
                         setTimeout(() => {
                             button.classList.remove('active');
-                        }, 300); // Match duration of clickPulse animation
+                        }, 50); // Match duration of clickPulse animation
                     }
                 });
             });
