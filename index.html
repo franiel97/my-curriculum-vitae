@@ -68,7 +68,7 @@
         transition: all 0.4s ease;
     }
     .container-right {
-        /*width: 70%;*/
+        width: 70%;
         display: flex;
         flex-direction: column;
         gap: 15px;
@@ -382,11 +382,11 @@
     .carousel-container {
         position: relative;
         width: 100%;
-        /*max-width: 600px;*/
+        max-width: 600px;
         margin: 20px auto;
         overflow: hidden;
         border-radius: 10px;
-        /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
     .carousel {
         display: flex;
@@ -394,7 +394,7 @@
         will-change: transform;
     }
     .carousel-item {
-        flex: 0 0 calc(100% / 3); /* 2 imagens em telas grandes */
+        flex: 0 0 calc(100% / 3);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -403,16 +403,14 @@
     .carousel-item img {
         width: 100%;
         height: auto;
-        max-height: 400px; /* Ajustado para container-right */
+        max-height: 200px;
         object-fit: contain;
         cursor: pointer;
-        border-radius: 15px;
+        border-radius: 8px;
         transition: transform 0.3s ease;
-        align-items: center;
-
     }
     .carousel-item img:hover {
-        transform: scale(1.25);
+        transform: scale(1.05);
     }
     .carousel-button {
         position: absolute;
@@ -610,6 +608,9 @@
         .container-left {
             width: 100%;
         }
+        .container-right {
+            width: 100%;
+        }
         .contact-section {
             display: none;
         }
@@ -736,7 +737,7 @@
             max-width: 100%;
         }
         .carousel-item {
-            flex: 0 0 calc(100% / 2); /* 2 imagens em telas médias */
+            flex: 0 0 calc(100% / 2);
         }
         .carousel-item img {
             max-height: 150px;
@@ -793,7 +794,7 @@
             font-size: 0.8em;
         }
         .carousel-item {
-            flex: 0 0 100%; /* 1 imagem em telas pequenas */
+            flex: 0 0 100%;
         }
         .carousel-item img {
             max-height: 120px;
@@ -1296,12 +1297,13 @@
             });
 
             const carousel = document.querySelector('.carousel');
-            const carouselItems = document.querySelectorAll('.carousel-item');
+            const originalItems = document.querySelectorAll('.carousel-item');
             const prevButton = document.querySelector('.carousel-button.prev');
             const nextButton = document.querySelector('.carousel-button.next');
             const indicatorsContainer = document.querySelector('.carousel-indicators');
             let currentIndex = 0;
             let itemsPerView = getItemsPerView();
+            const totalOriginalItems = originalItems.length;
 
             function getItemsPerView() {
                 if (window.innerWidth <= 640) return 1;
@@ -1309,28 +1311,51 @@
                 return 3;
             }
 
-            function updateCarousel() {
+            function setupInfiniteCarousel() {
+                const clonesBefore = [];
+                const clonesAfter = [];
+                originalItems.forEach(item => {
+                    const clone = item.cloneNode(true);
+                    clonesBefore.push(clone);
+                    clonesAfter.push(clone.cloneNode(true));
+                });
+                clonesBefore.reverse().forEach(clone => carousel.prepend(clone));
+                clonesAfter.forEach(clone => carousel.appendChild(clone));
+                currentIndex = totalOriginalItems;
+                updateCarousel(true);
+            }
+
+            function updateCarousel(noTransition = false) {
                 const itemWidth = 100 / itemsPerView;
+                if (noTransition) {
+                    carousel.style.transition = 'none';
+                }
                 carousel.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
+                if (noTransition) {
+                    setTimeout(() => {
+                        carousel.style.transition = 'transform 0.5s ease-in-out';
+                    }, 0);
+                }
                 updateIndicators();
             }
 
             function updateIndicators() {
                 const dots = indicatorsContainer.querySelectorAll('.dot');
+                const activeIndex = ((currentIndex % totalOriginalItems) + totalOriginalItems) % totalOriginalItems;
                 dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === Math.floor(currentIndex / itemsPerView));
+                    dot.classList.toggle('active', index === Math.floor(activeIndex / itemsPerView));
                 });
             }
 
             function createIndicators() {
                 indicatorsContainer.innerHTML = '';
-                const totalGroups = Math.ceil(carouselItems.length / itemsPerView);
+                const totalGroups = Math.ceil(totalOriginalItems / itemsPerView);
                 for (let i = 0; i < totalGroups; i++) {
                     const dot = document.createElement('div');
                     dot.classList.add('dot');
                     if (i === 0) dot.classList.add('active');
                     dot.addEventListener('click', () => {
-                        currentIndex = i * itemsPerView;
+                        currentIndex = totalOriginalItems + (i * itemsPerView);
                         updateCarousel();
                     });
                     indicatorsContainer.appendChild(dot);
@@ -1338,26 +1363,41 @@
             }
 
             prevButton.addEventListener('click', () => {
-                currentIndex = currentIndex > 0 ? currentIndex - itemsPerView : Math.floor((carouselItems.length - 1) / itemsPerView) * itemsPerView;
+                currentIndex--;
                 updateCarousel();
+                if (currentIndex <= 0) {
+                    setTimeout(() => {
+                        currentIndex = totalOriginalItems;
+                        updateCarousel(true);
+                    }, 500);
+                }
             });
 
             nextButton.addEventListener('click', () => {
-                currentIndex = currentIndex < carouselItems.length - itemsPerView ? currentIndex + itemsPerView : 0;
+                currentIndex++;
                 updateCarousel();
+                if (currentIndex >= totalOriginalItems * 2) {
+                    setTimeout(() => {
+                        currentIndex = totalOriginalItems;
+                        updateCarousel(true);
+                    }, 500);
+                }
             });
 
             const modal = document.getElementById('certificate-modal');
             const modalImage = document.getElementById('modal-image');
             const modalClose = document.querySelector('.modal-close');
 
-            carouselItems.forEach(item => {
-                const img = item.querySelector('img');
-                img.addEventListener('click', () => {
-                    modalImage.src = img.src;
-                    modal.style.display = 'flex';
+            function attachImageClickEvents() {
+                const allItems = document.querySelectorAll('.carousel-item');
+                allItems.forEach(item => {
+                    const img = item.querySelector('img');
+                    img.addEventListener('click', () => {
+                        modalImage.src = img.src;
+                        modal.style.display = 'flex';
+                    });
                 });
-            });
+            }
 
             modalClose.addEventListener('click', () => {
                 modal.style.display = 'none';
@@ -1373,14 +1413,16 @@
                 const newItemsPerView = getItemsPerView();
                 if (newItemsPerView !== itemsPerView) {
                     itemsPerView = newItemsPerView;
-                    currentIndex = 0;
+                    currentIndex = totalOriginalItems;
                     createIndicators();
-                    updateCarousel();
+                    updateCarousel(true);
                 }
             });
 
+            setupInfiniteCarousel();
             createIndicators();
             updateCarousel();
+            attachImageClickEvents();
 
             updateSectionState();
             window.addEventListener('resize', updateSectionState);
