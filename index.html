@@ -133,9 +133,9 @@
     font-size: 0.95em;
     transition: transform 0.2s, background 0.3s;
     padding: 10px;
-	margin: 10px 15px 0px 0px;
+	margin: 10px 10px 0 0;
     }
-	
+
     .dark-mode .toggle-button {
         background: linear-gradient(90deg, #4a90e2, #7bc6ff);
     }
@@ -164,7 +164,7 @@
         color: #f6ad55;
     }
     .section h2 {
-        font-size: 1.6em;
+        font-size: 1.8em;
         background: linear-gradient(90deg, #03315c, #1a4971);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -185,7 +185,7 @@
         color: #03315c;
     }
     .section h2 {
-        font-size: 1.4em;
+        font-size: 1.6em;
         cursor: default;
     }
     .dark-mode .section h2 i {
@@ -611,7 +611,7 @@
             padding: 10px 15px 50px;
         }
         /*canvas#background-canvas {
-            display: none; /* Desativa animação em mobile para melhorar performance */
+            display: none; /* Desativa animação em mobile para melhorar performance
         }*/
         .container-top, .category-container, .container-right .category-container {
             padding: 8px;
@@ -666,10 +666,10 @@
             font-size: 0.85em;
         }
         .header h1 {
-            font-size: 2.8em;
+            font-size: 2em;
         }
         .dark-mode .header h1 {
-            font-size: 2.8em;
+            font-size: 2em;
         }
         .header p, .endereco p {
             font-size: 1em;
@@ -780,16 +780,16 @@
             padding: 6px;
         }
         .header h1 {
-            font-size: 2.2em;
+            font-size: 1.8em;
         }
         .dark-mode .header h1 {
-            font-size: 2.2em;
+            font-size: 1.8em;
         }
         .header p, .endereco p {
             font-size: 0.9em;
         }
         .section h2 {
-            font-size: 1em;
+            font-size: 1.1em;
         }
         .section p, .section ul {
             font-size: 0.85em;
@@ -886,7 +886,7 @@
             font-size: 1.2em;
         }
         .section h2 {
-            font-size: 1.4em;
+            font-size: 1.6em;
             cursor: default;
         }
         .section .toggle-icon {
@@ -1590,6 +1590,7 @@
             updateCarousel();
 
             updateSectionState();
+            window.addEventListener('resize', updateSectionState);
             window.addEventListener('reload', updateSectionState);
         });
     </script>
