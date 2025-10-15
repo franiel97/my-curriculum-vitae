@@ -14,7 +14,6 @@
         padding: 5px 10px;
         background-color: #04b5fd1f;
         color: #1a1d33;
-        transition: all 0.4s ease;
         transition: background-color 0.3s, color 0.3s;
         position: relative;
         overflow-x: hidden;
@@ -123,7 +122,7 @@
     }
     .toggle-button {
         border-radius: 10px;
-        padding: 8px 8px;
+        padding: 8px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -214,11 +213,13 @@
     .section:not(.collapsed) .toggle-icon::before {
         content: '\f068';
     }
-    #resumo.section .section-content {
+    #resumo.section .section-content,
+    #certificates.section .section-content {
         max-height: none !important;
         opacity: 1 !important;
     }
-    #resumo.section {
+    #resumo.section,
+    #certificates.section {
         max-height: none !important;
     }
     .section p, .section ul {
@@ -387,11 +388,21 @@
         overflow: hidden;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        contain: content;
+        transition: box-shadow 0.2s ease, border 0.2s ease; /* Transição para feedback visual */
+    }
+    .carousel-container.dragging {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra mais forte durante o arrasto */
+        border: 2px solid #4a90e2; /* Borda azul durante o arrasto */
+    }
+    .dark-mode .carousel-container.dragging {
+        box-shadow: 0 6px 12px rgba(255, 255, 255, 0.3);
+        border: 2px solid #7bc6ff;
     }
     .carousel {
         display: flex;
         transition: transform 0.5s ease-in-out;
-        will-change: transform;
+        touch-action: pan-x;
     }
     .carousel-item {
         flex: 0 0 calc(100% / 3);
@@ -407,7 +418,10 @@
         object-fit: contain;
         cursor: pointer;
         border-radius: 8px;
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease; /* Transição para escala */
+    }
+    .carousel-container.dragging .carousel-item img {
+        transform: scale(1.05); /* Leve aumento de escala durante o arrasto */
     }
     .carousel-item img:hover {
         transform: scale(1.05);
@@ -642,21 +656,17 @@
         }
         .floating-contacts li.sections-toggle-li {
             height: 50px;
+            width: 75px;
         }
-        .floating-contacts .mobile-toggle {
-            border-radius: 50%;
-            padding: 0;
-            background: linear-gradient(90deg, #03315c, #1a4971);
-            border: none;
+        .floating-contacts i {
+            font-size: 1em;
         }
-        .dark-mode .floating-contacts .mobile-toggle {
-            background: linear-gradient(90deg, #4a90e2, #7bc6ff);
+        .floating-contacts ul {
+            padding: 6px 6px;
+            gap: 2px;
         }
-        .floating-contacts .mobile-toggle:active {
-            animation: clickPulse 0.3s ease-in-out;
-        }
-        .floating-contacts .mobile-toggle i {
-            margin: 0;
+        .floating-contacts li.sections-toggle-li .mobile-toggle span {
+            font-size: 0.8em;
         }
         .header h1 {
             font-size: 2.2em;
@@ -698,18 +708,22 @@
         .section:not(.collapsed) {
             max-height: none !important;
         }
-        #resumo.section .section-content {
+        #resumo.section .section-content,
+        #certificates.section .section-content {
             max-height: none !important;
             transform: translateY(0) !important;
             opacity: 1 !important;
         }
-        #resumo.section {
+        #resumo.section,
+        #certificates.section {
             max-height: none !important;
         }
-        #resumo .toggle-icon {
+        #resumo .toggle-icon,
+        #certificates .toggle-icon {
             display: none !important;
         }
-        #resumo h2 {
+        #resumo h2,
+        #certificates h2 {
             cursor: default !important;
         }
         .section p, .section ul {
@@ -736,11 +750,17 @@
         .carousel-container {
             max-width: 100%;
         }
+        .carousel {
+            justify-content: center;
+        }
         .carousel-item {
-            flex: 0 0 calc(100% / 2);
+            flex: 0 0 100%;
+            padding: 10px 20px;
         }
         .carousel-item img {
             max-height: 150px;
+            max-width: 90%;
+            margin: 0 auto;
         }
         .carousel-button {
             padding: 6px;
@@ -795,9 +815,11 @@
         }
         .carousel-item {
             flex: 0 0 100%;
+            padding: 10px 15px;
         }
         .carousel-item img {
             max-height: 120px;
+            max-width: 85%;
         }
         .carousel-button {
             padding: 5px;
@@ -876,6 +898,20 @@
         }
         .experience .job-description {
             font-size: 14px;
+        }
+    }
+    @media (min-width: 721px) {
+        .carousel-item {
+            flex: 0 0 calc(100% / 3);
+            padding: 10px;
+        }
+        .carousel-item img {
+            max-height: 200px;
+            max-width: 100%;
+        }
+        .carousel-button {
+            padding: 8px;
+            font-size: 1.2em;
         }
     }
 </style>
@@ -1013,16 +1049,12 @@
                 </div>
             </div>
             <div class="category-container">
-                <div class="section certificates">
+                <div class="section certificates" id="certificates">
                     <h2><div class="section-title"><i class="fa-solid fa-certificate"></i><span>Certificados</span></div><span class="toggle-icon fa-solid fa-plus"></span></h2>
                     <div class="section-content">
                         <div class="carousel-container">
                             <div class="carousel">
-                                <div class="carousel-item"><img loading="lazy" src="certificados/Samsung_Ocean_1.png" alt="Workshop Jogos Digitais - Samsung Ocean"></div>
-                                <div class="carousel-item"><img loading="lazy" src="certificados/Samsung_Ocean_2.png" alt="Introdução a Jogos Digitais - Samsung Ocean"></div>
-                                <div class="carousel-item"><img loading="lazy" src="certificados/TDC_Trilha_DevTest.png" alt="Trilha DevTest TDC"></div>
-                                <div class="carousel-item"><img loading="lazy" src="certificados/TDC_Trilha_Testes.png" alt="Trilha Testes - TDC"></div>
-                                <div class="carousel-item"><img loading="lazy" src="certificados/UC-Cypress.jpg" alt="Testes End-To-End Cypress - Udemy"></div>
+                                <!-- Itens do carrossel serão adicionados dinamicamente -->
                             </div>
                             <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
                             <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
@@ -1073,7 +1105,7 @@
         }
 
         function toggleAllSections() {
-            const sections = document.querySelectorAll('.section:not(#resumo)');
+            const sections = document.querySelectorAll('.section:not(#resumo):not(#certificates)');
             const sectionsToggleButton = document.getElementById('sections-toggle-mobile');
             const sectionsToggleIcon = sectionsToggleButton.querySelector('.sections-toggle-icon');
             const sectionsToggleText = sectionsToggleButton.querySelector('.toggle-text');
@@ -1257,9 +1289,9 @@
             const sectionHeaders = document.querySelectorAll('.section h2');
             sectionHeaders.forEach(header => {
                 const section = header.parentElement;
-                if (section.id !== 'resumo') {
+                if (section.id !== 'resumo' && section.id !== 'certificates') {
                     header.addEventListener('click', () => {
-                        if (window.innerWidth <= 600) {
+                        if (window.innerWidth <= 720) {
                             section.classList.toggle('collapsed');
                         }
                     });
@@ -1269,9 +1301,9 @@
             function updateSectionState() {
                 const sections = document.querySelectorAll('.section');
                 sections.forEach(section => {
-                    if (window.innerWidth > 600) {
+                    if (window.innerWidth > 720) {
                         section.classList.remove('collapsed');
-                    } else if (section.id !== 'resumo') {
+                    } else if (section.id !== 'resumo' && section.id !== 'certificates') {
                         section.classList.add('collapsed');
                     }
                 });
@@ -1287,7 +1319,7 @@
             const floatingButtons = document.querySelectorAll('.floating-contacts li');
             floatingButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    if (window.innerWidth <= 600) {
+                    if (window.innerWidth <= 720) {
                         button.classList.add('active');
                         setTimeout(() => {
                             button.classList.remove('active');
@@ -1296,47 +1328,99 @@
                 });
             });
 
+            // Carousel optimization
             const carousel = document.querySelector('.carousel');
-            const originalItems = document.querySelectorAll('.carousel-item');
+            const carouselContainer = document.querySelector('.carousel-container');
             const prevButton = document.querySelector('.carousel-button.prev');
             const nextButton = document.querySelector('.carousel-button.next');
             const indicatorsContainer = document.querySelector('.carousel-indicators');
+            const modal = document.getElementById('certificate-modal');
+            const modalImage = document.getElementById('modal-image');
+            const modalClose = document.querySelector('.modal-close');
             let currentIndex = 0;
             let itemsPerView = getItemsPerView();
-            const totalOriginalItems = originalItems.length;
+            let originalItems = [];
+            let totalOriginalItems = 0;
+            let isTransitioning = false;
+            let touchStartX = 0;
+            let touchCurrentX = 0;
+            let isDragging = false;
+
+            // Lista de imagens na pasta certificados/
+            const imageFiles = [
+                { src: 'Samsung_Ocean_1.png', alt: 'Workshop Jogos Digitais - Samsung Ocean' },
+                { src: 'Samsung_Ocean_2.png', alt: 'Introdução a Jogos Digitais - Samsung Ocean' },
+                { src: 'TDC_Trilha_DevTest.png', alt: 'Trilha DevTest TDC' },
+                { src: 'TDC_Trilha_Testes.png', alt: 'Trilha Testes - TDC' },
+                { src: 'UC-Cypress.jpg', alt: 'Testes End-To-End Cypress - Udemy' }
+            ];
+
+            function createCarouselItems() {
+                carousel.innerHTML = ''; // Limpa o carrossel
+                originalItems = [];
+                imageFiles.forEach(file => {
+                    const item = document.createElement('div');
+                    item.classList.add('carousel-item');
+                    const img = document.createElement('img');
+                    img.loading = 'lazy';
+                    img.src = `certificados/${file.src}`;
+                    img.srcset = `certificados/${file.src.replace(/\.(png|jpg)$/, '_low.$1')} 480w, certificados/${file.src} 800w`;
+                    img.sizes = '(max-width: 720px) 480px, 800px';
+                    img.width = 800;
+                    img.height = 600;
+                    img.alt = file.alt;
+                    item.appendChild(img);
+                    carousel.appendChild(item);
+                    originalItems.push(item);
+                });
+                totalOriginalItems = originalItems.length;
+            }
 
             function getItemsPerView() {
-                if (window.innerWidth <= 640) return 1;
-                if (window.innerWidth <= 720) return 2;
-                return 3;
+                return window.innerWidth <= 720 ? 1 : 3;
+            }
+
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
             }
 
             function setupInfiniteCarousel() {
-                const clonesBefore = [];
-                const clonesAfter = [];
-                originalItems.forEach(item => {
-                    const clone = item.cloneNode(true);
-                    clonesBefore.push(clone);
-                    clonesAfter.push(clone.cloneNode(true));
-                });
+                const clonesBefore = originalItems.map(item => item.cloneNode(true));
+                const clonesAfter = originalItems.map(item => item.cloneNode(true));
                 clonesBefore.reverse().forEach(clone => carousel.prepend(clone));
                 clonesAfter.forEach(clone => carousel.appendChild(clone));
                 currentIndex = totalOriginalItems;
                 updateCarousel(true);
+                attachImageClickEvents();
             }
 
             function updateCarousel(noTransition = false) {
+                if (isTransitioning && !noTransition) return;
+                isTransitioning = !noTransition;
                 const itemWidth = 100 / itemsPerView;
                 if (noTransition) {
                     carousel.style.transition = 'none';
                 }
                 carousel.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
                 if (noTransition) {
-                    setTimeout(() => {
+                    requestAnimationFrame(() => {
                         carousel.style.transition = 'transform 0.5s ease-in-out';
-                    }, 0);
+                        isTransitioning = false;
+                    });
+                } else {
+                    setTimeout(() => {
+                        isTransitioning = false;
+                    }, 500);
                 }
-                updateIndicators();
+                requestAnimationFrame(updateIndicators);
             }
 
             function updateIndicators() {
@@ -1355,6 +1439,7 @@
                     dot.classList.add('dot');
                     if (i === 0) dot.classList.add('active');
                     dot.addEventListener('click', () => {
+                        if (isTransitioning) return;
                         currentIndex = totalOriginalItems + (i * itemsPerView);
                         updateCarousel();
                     });
@@ -1363,6 +1448,7 @@
             }
 
             prevButton.addEventListener('click', () => {
+                if (isTransitioning) return;
                 currentIndex--;
                 updateCarousel();
                 if (currentIndex <= 0) {
@@ -1374,6 +1460,7 @@
             });
 
             nextButton.addEventListener('click', () => {
+                if (isTransitioning) return;
                 currentIndex++;
                 updateCarousel();
                 if (currentIndex >= totalOriginalItems * 2) {
@@ -1383,10 +1470,6 @@
                     }, 500);
                 }
             });
-
-            const modal = document.getElementById('certificate-modal');
-            const modalImage = document.getElementById('modal-image');
-            const modalClose = document.querySelector('.modal-close');
 
             function attachImageClickEvents() {
                 const allItems = document.querySelectorAll('.carousel-item');
@@ -1409,7 +1492,62 @@
                 }
             });
 
-            window.addEventListener('resize', () => {
+            // Touch events for swipe functionality
+            carousel.addEventListener('touchstart', (e) => {
+                if (isTransitioning) return;
+                touchStartX = e.touches[0].clientX;
+                isDragging = true;
+                carousel.style.transition = 'none'; // Remove transição durante o arrasto
+                carouselContainer.classList.add('dragging'); // Adiciona feedback visual
+            });
+
+            carousel.addEventListener('touchmove', (e) => {
+                if (!isDragging || isTransitioning) return;
+                touchCurrentX = e.touches[0].clientX;
+                const deltaX = touchCurrentX - touchStartX;
+                const itemWidth = 100 / itemsPerView;
+                const currentTranslate = -currentIndex * itemWidth;
+                carousel.style.transform = `translateX(${currentTranslate + (deltaX / carousel.offsetWidth) * 100}%)`;
+                e.preventDefault(); // Impede rolagem vertical da página
+            });
+
+            carousel.addEventListener('touchend', () => {
+                if (!isDragging || isTransitioning) return;
+                isDragging = false;
+                const deltaX = touchCurrentX - touchStartX;
+                const threshold = carousel.offsetWidth * 0.3; // 30% do tamanho do carrossel como limiar
+                carousel.style.transition = 'transform 0.5s ease-in-out';
+                carouselContainer.classList.remove('dragging'); // Remove feedback visual
+
+                if (Math.abs(deltaX) > threshold) {
+                    if (deltaX < 0) {
+                        // Swipe para esquerda (próximo)
+                        currentIndex++;
+                        updateCarousel();
+                        if (currentIndex >= totalOriginalItems * 2) {
+                            setTimeout(() => {
+                                currentIndex = totalOriginalItems;
+                                updateCarousel(true);
+                            }, 500);
+                        }
+                    } else {
+                        // Swipe para direita (anterior)
+                        currentIndex--;
+                        updateCarousel();
+                        if (currentIndex <= 0) {
+                            setTimeout(() => {
+                                currentIndex = totalOriginalItems;
+                                updateCarousel(true);
+                            }, 500);
+                        }
+                    }
+                } else {
+                    // Volta à posição original se o arrasto for pequeno
+                    updateCarousel();
+                }
+            });
+
+            const handleResize = debounce(() => {
                 const newItemsPerView = getItemsPerView();
                 if (newItemsPerView !== itemsPerView) {
                     itemsPerView = newItemsPerView;
@@ -1417,12 +1555,15 @@
                     createIndicators();
                     updateCarousel(true);
                 }
-            });
+            }, 100);
 
+            window.addEventListener('resize', handleResize);
+
+            // Inicializar o carrossel
+            createCarouselItems();
             setupInfiniteCarousel();
             createIndicators();
             updateCarousel();
-            attachImageClickEvents();
 
             updateSectionState();
             window.addEventListener('resize', updateSectionState);
