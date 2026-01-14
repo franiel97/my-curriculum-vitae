@@ -488,10 +488,7 @@
 
 		window.addEventListener('resize', handleResize);
 
-		createCarouselItems();
-		setupInfiniteCarousel();
-		createIndicators();
-		updateCarousel();
+
 
 		updateSectionState();
 		window.addEventListener('reload', updateSectionState);
