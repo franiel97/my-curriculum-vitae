@@ -249,7 +249,8 @@
 				}
 			});
 		});
-
+		
+		/*
 		// Carousel optimization
 		let currentIndex = 0;
 		let itemsPerView = getItemsPerView();
@@ -486,10 +487,9 @@
 			}
 		}, 100);
 
-		window.addEventListener('resize', handleResize);
-
-
+		window.addEventListener('resize', handleResize);*/
 
 		updateSectionState();
 		window.addEventListener('reload', updateSectionState);
 	});
+
