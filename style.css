@@ -122,6 +122,7 @@
     font-size: 0.95em;
     transition: transform 0.2s, background 0.3s;
     padding: 10px;
+    margin: 5px 10px 0px 0px;
     }
 
     .dark-mode .toggle-button {
@@ -932,3 +933,4 @@
         }
     }
 </style>
+
